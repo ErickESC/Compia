@@ -5,14 +5,14 @@ package mx.uam.tsinsoft.adoptPokemon.negocio;
 
 import java.util.Optional;
 
-
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import lombok.extern.slf4j.Slf4j;
 import mx.uam.tsinsoft.adoptPokemon.datos.EntrenadorRepository;
 import mx.uam.tsinsoft.adoptPokemon.negocio.modelo.Entrenador;
+import mx.uam.tsinsoft.adoptPokemon.negocio.modelo.Pokemon;
+import mx.uam.tsinsoft.adoptPokemon.negocio.modelo.Trabajador;
 
 /**
  * @author erick
@@ -24,6 +24,9 @@ public class EntrenadorService {
 	
 	@Autowired
 	private EntrenadorRepository entrenadorRepository;
+	
+	@Autowired
+	private PokemonService pokemonService;
 	
 	/**
 	 * 
@@ -117,4 +120,52 @@ public class EntrenadorService {
 		return entrenadorRepository.existsById(Id);
 	}
 	
+	/**
+	 * 
+	 * @param trainerId
+	 * @param pokemonId
+	 * @return
+	 */
+	public boolean addPokemonToTrainer(Integer trainerId, String pokemonId) {
+		
+		Pokemon pokemon = pokemonService.retrive(pokemonId);
+		
+		Optional <Entrenador> grupoOpt = entrenadorRepository.findById(trainerId);
+		
+		if(!grupoOpt.isPresent() || pokemon == null) {
+			
+			return false;
+		}
+
+		Entrenador trainer = grupoOpt.get();
+		trainer.addPokemon(pokemon);
+		
+		// 5.- Persistir el cambio
+		entrenadorRepository.save(trainer);
+		
+		return true;
+	}
+	
+	public boolean trainerToWorker(Integer trainerId, String rank, String clave) {
+		
+		Optional <Entrenador> grupoOpt = entrenadorRepository.findById(trainerId);
+		
+		if(!grupoOpt.isPresent()) {
+			
+			return false;
+		}
+		
+		//Crea y actualiza los datos del trabajador
+		Trabajador datosTrabajador = new Trabajador();
+		datosTrabajador.setClave(clave);
+		datosTrabajador.setRank(rank);
+		
+		Entrenador trainer = grupoOpt.get();
+		trainer.setSoyTrabajador(datosTrabajador);
+		
+		// 5.- Persistir el cambio
+		entrenadorRepository.save(trainer);
+		
+		return true;
+	}
 }

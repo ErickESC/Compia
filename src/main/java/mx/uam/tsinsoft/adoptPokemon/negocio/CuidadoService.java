@@ -127,4 +127,33 @@ public class CuidadoService {
 		
 		return true;
 	}
+	
+	/**
+	 * 
+	 * @param groupId
+	 * @param pokemonId
+	 * @return tru en caso de haberlo retirado con exito
+	 */
+	public boolean quitPokemonFromCare(Integer groupId, String pokemonId) {
+		
+		// 1.- Recuperamos primero al pokemon
+		Pokemon pokemon = pokemonService.retrive(pokemonId);
+		
+		// 2.- Recuperamos el grupo
+		Optional <Cuidado> grupoOpt = cuidadoRepository.findById(groupId);
+		
+		// 3.- Verificamos que el pokemon y grupo existan
+		if(!grupoOpt.isPresent() || pokemon == null) {
+			
+			return false;
+		}
+		// 4.- retiro al pokemon de la especialidad
+		Cuidado grupo = grupoOpt.get();
+		grupo.quitPokemon(pokemon);
+		
+		// 5.- Persistir el cambio
+		cuidadoRepository.save(grupo);
+		
+		return true;
+	}
 }

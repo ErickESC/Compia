@@ -1,10 +1,12 @@
 package mx.uam.tsinsoft.adoptPokemon.negocio.modelo;
 
 import javax.persistence.CascadeType;
+
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.validation.constraints.NotBlank;
 
@@ -30,6 +32,11 @@ public class Pokemon {
 	@ApiModelProperty(notes = "Status del Pokemon", required = true)
 	@NotBlank
 	private String status;
+	
+	@ApiModelProperty(notes = "Entrenador del Pokemon. Si es null, aun no es adoptado", required = true)
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "pokemonAdopter")
+	private Entrenador entrenador;
 	
 	@ApiModelProperty(notes = "Informacion del Pokemon", required = true)
 	@OneToOne(cascade = {CascadeType.ALL})

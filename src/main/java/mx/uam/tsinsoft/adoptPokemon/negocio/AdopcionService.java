@@ -3,6 +3,7 @@ package mx.uam.tsinsoft.adoptPokemon.negocio;
 import java.util.Optional;
 
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -123,6 +124,35 @@ public class AdopcionService {
 		Adopcion grupo = grupoOpt.get();
 		grupo.addPokemon(pokemon);
 		
+		adopcionRepository.save(grupo);
+		
+		return true;
+	}
+	
+	/**
+	 * 
+	 * @param groupId
+	 * @param pokemonId
+	 * @return true si se retiro con exito
+	 */
+	public boolean quitPokemonFromAdoption(Integer groupId, String pokemonId) {
+		
+		// 1.- Recuperamos primero al pokemon
+		Pokemon pokemon = pokemonService.retrive(pokemonId);
+		
+		// 2.- Recuperamos el grupo
+		Optional <Adopcion> grupoOpt = adopcionRepository.findById(groupId);
+		
+		// 3.- Verificamos que el pokemon y grupo existan
+		if(!grupoOpt.isPresent() || pokemon == null) {
+			
+			return false;
+		}
+		// 4.- retiro al pokemon de la especialidad
+		Adopcion grupo = grupoOpt.get();
+		grupo.quitPokemon(pokemon);
+		
+		// 5.- Persistir el cambio
 		adopcionRepository.save(grupo);
 		
 		return true;

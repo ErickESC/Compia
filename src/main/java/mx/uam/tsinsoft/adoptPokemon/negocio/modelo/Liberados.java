@@ -38,4 +38,8 @@ public class Liberados {
 	public boolean addPokemon(Pokemon pokemon) {
 		return pokemons.add(pokemon);
 	}
+	
+	public boolean quitPokemon(Pokemon pokemon) {
+		return pokemons.remove(pokemon);
+	}
 }

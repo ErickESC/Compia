@@ -18,8 +18,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
-import mx.uam.tsinsoft.adoptPokemon.negocio.AdopcionService;
-import mx.uam.tsinsoft.adoptPokemon.negocio.modelo.Adopcion;
+import mx.uam.tsinsoft.adoptPokemon.negocio.CuidadoService;
+import mx.uam.tsinsoft.adoptPokemon.negocio.modelo.Cuidado;
 
 /**
  * Controlador para el API rest
@@ -29,11 +29,11 @@ import mx.uam.tsinsoft.adoptPokemon.negocio.modelo.Adopcion;
  */
 @RestController
 @Slf4j
-public class AdopcionController {
+public class CuidadoController {
 	
 	
 	@Autowired
-	private AdopcionService adopcionService;
+	private CuidadoService cuidadoService;
 	
 	/**
 	 * 
@@ -44,17 +44,17 @@ public class AdopcionController {
 			value = "Crear nuevo grupo de adopcion",
 			notes = "Permite crear un nuevo grupo de adopcion"
 			)
-	@PostMapping(path = "/adopciones", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity <?> create(@RequestBody @Valid Adopcion nuevoGrupo) {
+	@PostMapping(path = "/cuidados", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity <?> create(@RequestBody @Valid Cuidado nuevoGrupo) {
 		
 		log.info("Recibí llamada a create con "+ nuevoGrupo);
 		
-		Adopcion grupo = adopcionService.create(nuevoGrupo);
+		Cuidado grupo = cuidadoService.create(nuevoGrupo);
 		
 		if(grupo != null) {
 			return ResponseEntity.status(HttpStatus.CREATED).body(grupo);
 		}else {
-			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("No se puede crear grupo");
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("No se puede crear el grupo");
 		}
 	}
 	
@@ -66,10 +66,10 @@ public class AdopcionController {
 			value = "Regresa todos los grupos de adopcion",
 			notes = "Regresa un json con una lista de los grupos de adopcion en la BD"
 			)
-	@GetMapping(path = "/adopciones", produces = MediaType.APPLICATION_JSON_VALUE)
+	@GetMapping(path = "/cuidados", produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity <?> retrieveAll() {
 		
-		Iterable <Adopcion> result = adopcionService.retriveAll();
+		Iterable <Cuidado> result = cuidadoService.retriveAll();
 		
 		return ResponseEntity.status(HttpStatus.OK).body(result);
 		
@@ -81,19 +81,19 @@ public class AdopcionController {
 	 * @return status ok y grupo solicitado, not found en caso contrario
 	 */
 	@ApiOperation(
-			value = "Regresa el grupo de Adopcion",
-			notes = "Regresa un json con los datos del grupo solicitado"
+			value = "Regresa el grupo de cuidado",
+			notes = "Regresa un json con los datos de grupo de Cuidado solicitado"
 			)
-	@GetMapping(path = "/adopciones/{clave}", produces = MediaType.APPLICATION_JSON_VALUE)
+	@GetMapping(path = "/cuidados/{clave}", produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity <?> retrieve(@PathVariable("clave") @Valid Integer clave) {
 		log.info("Buscando al grupo con clave "+clave);
 		
-		Optional<Adopcion> especialidad = adopcionService.retrive(clave);
+		Optional<Cuidado> especialidad = cuidadoService.retrive(clave);
 		
 		if(especialidad != null) {
 			return ResponseEntity.status(HttpStatus.OK).body(especialidad);
 		} else {
-			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("No se encontro grupo de adopcion");
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("No se encontro grupo de cuidado");
 		}
 	}
 	
@@ -103,21 +103,21 @@ public class AdopcionController {
 	 * @return status ok y grupo actualizado, status no content en caso contrario, status conflict en caso de error
 	 */
 	@ApiOperation(
-			value = "Actualiza grupo de adopcion",
-			notes = "Permite actualizar los datos de un grupo de adopcion existente en la DB"
+			value = "Actualiza grupo de cuidado",
+			notes = "Permite actualizar los datos de un grupo de cuidado existente en la DB"
 			)
-	@PutMapping(path = "/adopciones/{clave}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity <?> update(@RequestBody @Valid Adopcion grupoActualizado) {
+	@PutMapping(path = "/cuidados/{clave}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity <?> update(@RequestBody @Valid Cuidado grupoActualizado) {
 		
 		log.info("Recibí llamada a update con "+ grupoActualizado);
 		
-		Adopcion grupo;
+		Cuidado grupo;
 		
 		//Revisa que exista en el repositorio de grupos
-		if(adopcionService.exist(grupoActualizado.getId())) {
+		if(cuidadoService.exist(grupoActualizado.getId())) {
 			try {
 				
-				grupo = adopcionService.update(grupoActualizado);
+				grupo = cuidadoService.update(grupoActualizado);
 				
 				return ResponseEntity.status(HttpStatus.OK).body(grupo);
 				
@@ -135,15 +135,16 @@ public class AdopcionController {
 	 * @return status no content, status conflic en caso de que algo haya salido mal, not found en caso de no encontrar el grupo
 	 */
 	@ApiOperation(
-			value = "Borra grupo de adopcion",
-			notes = "Permite borrar un grupo de adopcion de la BD"
+			value = "Borra grupo de cuidado",
+			notes = "Permite borrar un grupo de cuidado de la BD"
 			)
-	@DeleteMapping(path = "/adopciones/{clave}", consumes = MediaType.APPLICATION_JSON_VALUE)
+	@DeleteMapping(path = "/cuidados/{clave}", consumes = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity <?> delete(@PathVariable("clave") @Valid Integer id) {
 		
 		log.info("Recibí llamada a delete con "+ id);
 		
-		if(adopcionService.delete(id)) {
+		//Revisa que exista en el repositorio de alumnos
+		if(cuidadoService.delete(id)) {
 			try {
 				
 				return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
@@ -164,15 +165,15 @@ public class AdopcionController {
 	 * @return OK si se agrego con exito o No content en caso contrario
 	 */
 	@ApiOperation(
-			value = "Agregar a un pokemon un grupo de adopcion",
+			value = "Agregar a un pokemon un grupo de cuidado",
 			notes = "Permite Agregar un Pokemon a un grupo de adopcion"
 			)
-	@PostMapping(path = "/adopciones/add/{clave}/pokemons/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity <?> addPokemonToAdoption(@PathVariable("clave") Integer id, @PathVariable("id") String pokemonID) {
+	@PostMapping(path = "/cuidados/add/{clave}/pokemons/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity <?> addPokemonToCare(@PathVariable("clave") Integer id, @PathVariable("id") String pokemonID) {
 		
 		log.info("Recibí llamada a addPokemon con grupo"+ id +" y matricula: "+pokemonID);
 		
-		boolean result = adopcionService.addPokemonToAdoption(id, pokemonID);
+		boolean result = cuidadoService.addPokemonToCare(id, pokemonID);
 		
 		if(result) {
 			return ResponseEntity.status(HttpStatus.OK).build();
@@ -182,15 +183,15 @@ public class AdopcionController {
 	}
 	
 	@ApiOperation(
-			value = "Retirar a un pokemon un grupo de adopcion",
-			notes = "Permite retirar un Pokemon a un grupo de adopcion"
+			value = "Retirar a un pokemon un grupo de cuidado",
+			notes = "Permite retirar un Pokemon a un grupo de cuidado"
 			)
-	@PostMapping(path = "/adopciones/quit/{grupoId}/pokemons/{pokemonId}", produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity <?> quitPokemonFromAdoption(@PathVariable("grupoId") Integer id, @PathVariable("pokemonId") String pokemonID) {
+	@PostMapping(path = "/cuidados/quit/{grupoId}/pokemons/{pokemonId}", produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity <?> quitPokemonFromCare(@PathVariable("grupoId") Integer id, @PathVariable("pokemonId") String pokemonID) {
 		
 		log.info("Recibí llamada a quitPokemon con grupo"+ id +" y matricula: "+pokemonID);
 		
-		boolean result = adopcionService.quitPokemonFromAdoption(id, pokemonID);
+		boolean result = cuidadoService.quitPokemonFromCare(id, pokemonID);
 		
 		if(result) {
 			return ResponseEntity.status(HttpStatus.OK).build();

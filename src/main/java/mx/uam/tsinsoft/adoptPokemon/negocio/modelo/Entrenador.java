@@ -6,7 +6,6 @@ import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -60,13 +59,21 @@ public class Entrenador {
 	@JoinColumn(name = "esTrabajador")
 	private Trabajador soyTrabajador;
 	
+	public boolean toTrabajador(Trabajador trabajador) {
+		soyTrabajador = trabajador;
+		return true;
+	}
+	
 	@ApiModelProperty(notes = "Lista de pokemons adoptados por un entrenador", required = true)
 	@Builder.Default
-	@OneToMany(targetEntity = Pokemon.class, fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
-	@JoinColumn(name = "pokemonsAdt") //Para unificar las tablas de pokemon y entrenador
+	@OneToMany(mappedBy= "entrenador", cascade = CascadeType.ALL)
 	private List <Pokemon> pokemons = new ArrayList <> ();
 	
 	public boolean addPokemon(Pokemon pokemon) {
 		return pokemons.add(pokemon);
+	}
+	
+	public boolean quitPokemon(Pokemon pokemon) {
+		return pokemons.remove(pokemon);
 	}
 }

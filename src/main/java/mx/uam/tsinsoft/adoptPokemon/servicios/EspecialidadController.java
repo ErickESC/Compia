@@ -169,12 +169,30 @@ public class EspecialidadController {
 			value = "Internar a un pokemon una especialidad",
 			notes = "Permite Agregar un Pokemon a un Especialidad"
 			)
-	@PostMapping(path = "/especialidades/{espId}/pokemons/{pokemonId}", produces = MediaType.APPLICATION_JSON_VALUE)
+	@PostMapping(path = "/especialidades/add/{espId}/pokemons/{pokemonId}", produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity <?> addPokemonToSpecialty(@PathVariable("espId") Integer id, @PathVariable("pokemonId") String pokemonID) {
 		
-		log.info("Recibí llamada a addPokemon con grupo"+ id +" y matricula: "+pokemonID);
+		log.info("Recibí llamada a addPokemon con especialidad: "+ id +" y matricula: "+pokemonID);
 		
 		boolean result = especialidadService.addPokemonToSpecialty(id, pokemonID);
+		
+		if(result) {
+			return ResponseEntity.status(HttpStatus.OK).build();
+		}else {
+			return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+		}
+	}
+	
+	@ApiOperation(
+			value = "Retirar a un pokemon una especialidad",
+			notes = "Permite retirar un Pokemon a un Especialidad"
+			)
+	@PostMapping(path = "/especialidades/quit/{espId}/pokemons/{pokemonId}", produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity <?> quitPokemonFromSpecialty(@PathVariable("espId") Integer id, @PathVariable("pokemonId") String pokemonID) {
+		
+		log.info("Recibí llamada a quitPokemon con especialidad: "+ id +" y matricula: "+pokemonID);
+		
+		boolean result = especialidadService.quitPokemonFromSpecialty(id, pokemonID);
 		
 		if(result) {
 			return ResponseEntity.status(HttpStatus.OK).build();

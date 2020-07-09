@@ -131,4 +131,33 @@ public class EspecialidadService {
 		
 		return true;
 	}
+	
+	/**
+	 * 
+	 * @param groupId
+	 * @param pokemonId
+	 * @return true si se retiro con exito
+	 */
+	public boolean quitPokemonFromSpecialty(Integer groupId, String pokemonId) {
+		
+		// 1.- Recuperamos primero al pokemon
+		Pokemon pokemon = pokemonService.retrive(pokemonId);
+		
+		// 2.- Recuperamos la especialidad
+		Optional <Especialidad> grupoOpt = especialidadRepository.findById(groupId);
+		
+		// 3.- Verificamos que el pokemon y especialidad existan
+		if(!grupoOpt.isPresent() || pokemon == null) {
+			
+			return false;
+		}
+		// 4.- retiro al pokemon de la especialidad
+		Especialidad especialidad = grupoOpt.get();
+		especialidad.quitPokemon(pokemon);
+		
+		// 5.- Persistir el cambio
+		especialidadRepository.save(especialidad);
+		
+		return true;
+	}
 }
