@@ -15,7 +15,7 @@ import lombok.extern.slf4j.Slf4j;
 
 @Controller
 @Slf4j
-public class ControladorPrincipal {
+public class MainController {
 	
 	Logger logger = Logger.getLogger("logger");
 	
