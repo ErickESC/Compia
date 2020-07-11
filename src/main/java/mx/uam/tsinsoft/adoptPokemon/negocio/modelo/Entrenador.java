@@ -6,6 +6,7 @@ import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -55,7 +56,7 @@ public class Entrenador {
 	private String psswrd;
 	
 	@ApiModelProperty(notes = "En caso de ser trabajador se le asignan datos, null en caso contrario", required = true)
-	@OneToOne(cascade = {CascadeType.ALL})
+	@OneToOne(fetch = FetchType.EAGER, cascade = {CascadeType.ALL})
 	@JoinColumn(name = "esTrabajador")
 	private Trabajador soyTrabajador;
 	
@@ -66,7 +67,7 @@ public class Entrenador {
 	
 	@ApiModelProperty(notes = "Lista de pokemons adoptados por un entrenador", required = true)
 	@Builder.Default
-	@OneToMany(mappedBy= "entrenador", cascade = CascadeType.ALL)
+	@OneToMany(mappedBy= "entrenador", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private List <Pokemon> pokemons = new ArrayList <> ();
 	
 	public boolean addPokemon(Pokemon pokemon) {

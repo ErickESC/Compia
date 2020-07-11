@@ -6,7 +6,6 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.validation.constraints.NotBlank;
 
@@ -34,12 +33,12 @@ public class Pokemon {
 	private String status;
 	
 	@ApiModelProperty(notes = "Entrenador del Pokemon. Si es null, aun no es adoptado", required = true)
-	@ManyToOne(fetch = FetchType.LAZY)
+	@OneToOne(fetch = FetchType.LAZY,cascade = {CascadeType.ALL})
 	@JoinColumn(name = "pokemonAdopter")
 	private Entrenador entrenador;
 	
 	@ApiModelProperty(notes = "Informacion del Pokemon", required = true)
-	@OneToOne(cascade = {CascadeType.ALL})
+	@OneToOne(fetch = FetchType.LAZY, cascade = {CascadeType.ALL})
 	@JoinColumn(name = "pokemonInfo")
 	private Information information;
 }

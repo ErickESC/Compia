@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import lombok.extern.slf4j.Slf4j;
 import mx.uam.tsinsoft.adoptPokemon.datos.EntrenadorRepository;
+import mx.uam.tsinsoft.adoptPokemon.datos.PokemonRepository;
 import mx.uam.tsinsoft.adoptPokemon.negocio.modelo.Entrenador;
 import mx.uam.tsinsoft.adoptPokemon.negocio.modelo.Pokemon;
 import mx.uam.tsinsoft.adoptPokemon.negocio.modelo.Trabajador;
@@ -27,6 +28,9 @@ public class EntrenadorService {
 	
 	@Autowired
 	private PokemonService pokemonService;
+	
+	@Autowired
+	private PokemonRepository pokemonRepository;
 	
 	/**
 	 * 
@@ -140,7 +144,12 @@ public class EntrenadorService {
 		Entrenador trainer = grupoOpt.get();
 		trainer.addPokemon(pokemon);
 		
+		pokemon.setEntrenador(trainer);
+		
+		log.info("Entrenador contiene a pokemon: "+trainer.getPokemons().contains(pokemon));
+		log.info("El entrenador del pokemon es: "+pokemon.getEntrenador().getId());
 		// 5.- Persistir el cambio
+		pokemonRepository.save(pokemon);
 		entrenadorRepository.save(trainer);
 		
 		return true;
