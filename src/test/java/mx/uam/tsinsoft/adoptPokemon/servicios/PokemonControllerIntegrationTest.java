@@ -45,7 +45,7 @@ public class PokemonControllerIntegrationTest {
 		// Aqui se puede hacer cosas para preparar sus casos de prueba, incluyendo
 		// agregar datos a la BD
 		Pokemon pokemon = new Pokemon();
-		pokemon.setId("SquirtleDePruebas");
+		pokemon.setPokemonId("SquirtleDePruebas");
 		pokemon.setStatus("SoloSolinSolito");
 		
 		// Creo el encabezado
@@ -83,7 +83,7 @@ public class PokemonControllerIntegrationTest {
 		
 		// Creo el alumno que voy a enviar con datos distintos al creado en prepare
 		Pokemon pokemon = new Pokemon();
-		pokemon.setId("Ditto");
+		pokemon.setPokemonId("Ditto");
 		pokemon.setStatus("Gordito");
 
 		// Creo el encabezado
