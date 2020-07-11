@@ -50,7 +50,7 @@ public class EspecialidadControllerIntegrationTest {
 		// Aqui se puede hacer cosas para preparar sus casos de prueba, incluyendo
 		// agregar datos a la BD
 		Pokemon pokemon = new Pokemon();
-		pokemon.setId("SquirtleDePruebas");
+		pokemon.setPokemonId("SquirtleDePruebas");
 		pokemon.setStatus("SoloSolinSolito");
 
 		Especialidad especialidad = new Especialidad();
