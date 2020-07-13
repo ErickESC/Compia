@@ -39,7 +39,7 @@ public class EspecialidadControllerIntegrationTest {
 	private TestRestTemplate restTemplate;
 	
 	@Autowired
-	private PokemonRepository pokemonRepository; 
+	private PokemonRepository pokemonRepository;
 	
 	@Autowired
 	private EspecialidadRepository especialidadRepository;
