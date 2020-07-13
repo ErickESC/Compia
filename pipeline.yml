@@ -1,25 +1,11 @@
-trigger:
-- master
+stages:
+    - test
 
-pool:
-  vmImage: 'Ubuntu-16.04'
-
-steps:
-- task: NodeTool@0
-  inputs:
-    versionSpec: '8.x'
-  displayName: 'Install Node.js'
-
-- script: |
-    npm install
-  displayName: 'npm install'
-
-- script: |
-    npm test
-  displayName: 'npm test'
-
-- task: ArchiveFiles@2
-  displayName: 'Archive files'
-  inputs:
-    rootFolderOrFile: '$(System.DefaultWorkingDirectory)'
-    includeRootFolder: false
+test:
+    stage: test
+    image: golang:1.12
+    script:
+        - mkdir -p /go/src
+        - ln -s /builds /go/src/github.com
+        - go get -u github.com/mattn/go-sqlite3 github.com/jmoiron/sqlx
+        - go test github.com/flimzy/anki
