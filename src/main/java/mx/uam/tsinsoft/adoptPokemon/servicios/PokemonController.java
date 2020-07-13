@@ -68,7 +68,7 @@ public class PokemonController {
 		
 		Iterable <Pokemon> result = pokemonService.retriveAll();
 		
-		log.info("pokemon info"+result);
+		log.info("pokemon info");
 		
 		return ResponseEntity.status(HttpStatus.OK).body(result);
 		

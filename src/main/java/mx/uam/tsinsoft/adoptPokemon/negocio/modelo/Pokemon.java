@@ -33,12 +33,12 @@ public class Pokemon {
 	private String status;
 	
 	@ApiModelProperty(notes = "Entrenador del Pokemon. Si es null, aun no es adoptado", required = true)
-	@OneToOne(fetch = FetchType.LAZY,cascade = {CascadeType.ALL})
+	@OneToOne(fetch = FetchType.EAGER,cascade = {CascadeType.ALL})
 	@JoinColumn(name = "pokemonAdopter")
 	private Entrenador entrenador;
 	
 	@ApiModelProperty(notes = "Informacion del Pokemon", required = true)
-	@OneToOne(fetch = FetchType.LAZY, cascade = {CascadeType.ALL})
+	@OneToOne(fetch = FetchType.EAGER, cascade = {CascadeType.ALL})
 	@JoinColumn(name = "pokemonInfo")
 	private Information information;
 }

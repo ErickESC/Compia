@@ -124,4 +124,27 @@ public class PokemonControllerIntegrationTest {
 		// Corroboro que el endpoint me regresa el estatus esperado
 		assertEquals(HttpStatus.BAD_REQUEST, responseEntity.getStatusCode());
 	}
+	
+	/*
+	 * PRUEBAS PARA RETRIVE ALL
+	 */
+	
+	@Test
+	public void testRetriveAll201() {
+
+		Pokemon pokemon = null;
+		
+		HttpHeaders headers = new HttpHeaders();
+		headers.set("content-type",MediaType.APPLICATION_JSON.toString());
+		
+		// Creo la petición con el alumno como body y el encabezado
+		HttpEntity <Pokemon> request = new HttpEntity <> (pokemon, headers);
+		
+		ResponseEntity<Pokemon> responseEntity = restTemplate.exchange("/pokemons", HttpMethod.GET, request, Pokemon.class);
+
+		log.info("Me regresó:"+responseEntity.getBody());
+		
+		// Corroboro que el endpoint me regresa el estatus esperado
+		assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
+	}
 }
