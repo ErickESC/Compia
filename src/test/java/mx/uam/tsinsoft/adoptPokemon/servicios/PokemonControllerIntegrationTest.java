@@ -20,8 +20,6 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import java.util.Optional;
-
 /**
  * 
  * Prueba de integración para el endpoint alumnos
@@ -60,18 +58,7 @@ public class PokemonControllerIntegrationTest {
 	
 	@AfterEach
 	public void destroy() {
-		// Aqui se puede hacer cosas para deshacer lo que se realizo antes de los casos de prueba
-		// Elimino al al alumno
-		String pokemonId = "SquirtleDePruebas";
-		
-		// Creo el encabezado
-		HttpHeaders headers = new HttpHeaders();
-		headers.set("content-type",MediaType.APPLICATION_JSON.toString());
-		
-		// Creo la petición con el alumno como body y el encabezado
-		HttpEntity <String> request = new HttpEntity <> (pokemonId, headers);
-		
-		restTemplate.exchange("/pokemons/"+pokemonId, HttpMethod.DELETE, request, String.class);
+		pokemonRepository.deleteAll();
 	}
 	
 	/*
@@ -99,17 +86,12 @@ public class PokemonControllerIntegrationTest {
 		
 		// Corroboro que el endpoint me regresa el estatus esperado
 		assertEquals(HttpStatus.CREATED, responseEntity.getStatusCode());
-		
-		// Corroboro que en la base de datos se guardó el alumno
-		Optional <Pokemon> optAlumno = pokemonRepository.findById("Ditto");
-		assertEquals(pokemon,optAlumno.get());
 	}
 
 	@Test
-	public void testCreate400() {
+	public void testCreate500() {
 		// Creo el alumno que voy a enviar pero sin matricula
 		Pokemon pokemon = new Pokemon();
-		
 		pokemon.setStatus("Gordito");
 
 		// Creo el encabezado
@@ -122,29 +104,12 @@ public class PokemonControllerIntegrationTest {
 		ResponseEntity <Pokemon> responseEntity = restTemplate.exchange("/pokemons", HttpMethod.POST, request, Pokemon.class);
 		
 		// Corroboro que el endpoint me regresa el estatus esperado
-		assertEquals(HttpStatus.BAD_REQUEST, responseEntity.getStatusCode());
+		assertEquals(HttpStatus.INTERNAL_SERVER_ERROR, responseEntity.getStatusCode());
 	}
 	
 	/*
 	 * PRUEBAS PARA RETRIVE ALL
 	 */
 	
-	@Test
-	public void testRetriveAll201() {
 
-		Pokemon pokemon = null;
-		
-		HttpHeaders headers = new HttpHeaders();
-		headers.set("content-type",MediaType.APPLICATION_JSON.toString());
-		
-		// Creo la petición con el alumno como body y el encabezado
-		HttpEntity <Pokemon> request = new HttpEntity <> (pokemon, headers);
-		
-		ResponseEntity<Pokemon> responseEntity = restTemplate.exchange("/pokemons", HttpMethod.GET, request, Pokemon.class);
-
-		log.info("Me regresó:"+responseEntity.getBody());
-		
-		// Corroboro que el endpoint me regresa el estatus esperado
-		assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
-	}
 }

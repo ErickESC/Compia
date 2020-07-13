@@ -27,7 +27,7 @@ import mx.uam.tsinsoft.adoptPokemon.datos.PokemonRepository;
  */
 @ExtendWith(MockitoExtension.class) //Uso de mockito
 
-public class PokemonServiceTest {
+public class EntrenadorServiceTest {
 	
 	//Variable para guardar el ID generado
 	
@@ -209,3 +209,4 @@ public class PokemonServiceTest {
 		assertEquals(false,result);
 	}
 }
+

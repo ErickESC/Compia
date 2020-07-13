@@ -83,7 +83,16 @@ public class PokemonService {
 		Optional <Pokemon> pokemonOpt = pokemonRepository.findById(pokemonActualizado.getPokemonId());
 		
 		if(pokemonOpt.isPresent()) {
+			
+			if((pokemonActualizado.getInformation() == null) && (pokemonOpt.get().getInformation() != null)) {
+				pokemonActualizado.setInformation(pokemonOpt.get().getInformation());
+			}
+			if((pokemonActualizado.getEntrenador() == null) && (pokemonOpt.get().getEntrenador() != null)) {
+				pokemonActualizado.setEntrenador(pokemonOpt.get().getEntrenador());
+			}
+			
 			return pokemonRepository.save(pokemonActualizado);
+			
 		}else {
 			log.info("El pokemon no existe");
 			return null;

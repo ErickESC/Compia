@@ -13,7 +13,6 @@ import mx.uam.tsinsoft.adoptPokemon.datos.EntrenadorRepository;
 import mx.uam.tsinsoft.adoptPokemon.datos.PokemonRepository;
 import mx.uam.tsinsoft.adoptPokemon.negocio.modelo.Entrenador;
 import mx.uam.tsinsoft.adoptPokemon.negocio.modelo.Pokemon;
-import mx.uam.tsinsoft.adoptPokemon.negocio.modelo.Trabajador;
 
 /**
  * @author erick
@@ -89,7 +88,16 @@ public class EntrenadorService {
 		Optional<Entrenador> entrenadorOpt = entrenadorRepository.findById(entrenadorActualizado.getId());
 		
 		if(entrenadorOpt.isPresent()) {
+			
+			if((entrenadorActualizado.getSoyTrabajador() == null) && (entrenadorOpt.get().getSoyTrabajador() != null)) {
+				entrenadorActualizado.setSoyTrabajador(entrenadorOpt.get().getSoyTrabajador());
+			}
+			if((entrenadorActualizado.getPokemons().isEmpty()) && (!entrenadorOpt.get().getPokemons().isEmpty())) {
+				entrenadorActualizado.setPokemons(entrenadorOpt.get().getPokemons());
+			}
+			
 			return entrenadorRepository.save(entrenadorActualizado);
+			
 		}else {
 			log.info("El alumno no existe");
 			return null;
@@ -150,29 +158,6 @@ public class EntrenadorService {
 		log.info("El entrenador del pokemon es: "+pokemon.getEntrenador().getId());
 		// 5.- Persistir el cambio
 		pokemonRepository.save(pokemon);
-		entrenadorRepository.save(trainer);
-		
-		return true;
-	}
-	
-	public boolean trainerToWorker(Integer trainerId, String rank, String clave) {
-		
-		Optional <Entrenador> grupoOpt = entrenadorRepository.findById(trainerId);
-		
-		if(!grupoOpt.isPresent()) {
-			
-			return false;
-		}
-		
-		//Crea y actualiza los datos del trabajador
-		Trabajador datosTrabajador = new Trabajador();
-		datosTrabajador.setClave(clave);
-		datosTrabajador.setRank(rank);
-		
-		Entrenador trainer = grupoOpt.get();
-		trainer.setSoyTrabajador(datosTrabajador);
-		
-		// 5.- Persistir el cambio
 		entrenadorRepository.save(trainer);
 		
 		return true;
