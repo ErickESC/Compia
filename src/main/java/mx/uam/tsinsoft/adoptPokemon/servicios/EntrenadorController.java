@@ -179,29 +179,5 @@ public class EntrenadorController {
 			return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
 		}
 	}
-	
-	/**
-	 * POST /entrenadores/{trainerId}/to/{rank}/{clave}
-	 * 
-	 * @param nuevoGrupo
-	 * @return OK si se agrego con exito o No content en caso contrario
-	 */
-	@ApiOperation(
-			value = "Agregar como Trabajador a un entrenador",
-			notes = "Permite volver Trabajador a un entrenador"
-			)
-	@PostMapping(path = "/entrenadores/{trainerId}/to/{rank}/{clave}", produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity <?> trainerToWorker(@PathVariable("trainerId") Integer id, @PathVariable("rank") String rank, @PathVariable("clave") String clave) {
-		
-		log.info("Recibí llamada a trainerToWorker con grupo"+ id +" y datos: "+rank+" y "+clave);
-		
-		boolean result = entrenadorService.trainerToWorker(id, rank, clave);
-		
-		if(result) {
-			return ResponseEntity.status(HttpStatus.OK).build();
-		}else {
-			return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
-		}
-	}
 }
 

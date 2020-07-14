@@ -1,5 +1,5 @@
 package mx.uam.tsinsoft.adoptPokemon.servicios;
 
-public class CuidadoControllerTest {
+public class CuidadoControllerIntegrationTest {
 
 }

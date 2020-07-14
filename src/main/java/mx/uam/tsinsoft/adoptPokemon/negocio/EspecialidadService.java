@@ -111,12 +111,14 @@ public class EspecialidadService {
 	 */
 	public boolean addPokemonToSpecialty(Integer groupId, String pokemonId) {
 		
+		log.info("Datos: "+groupId+" "+pokemonId);
+		
 		// 1.- Recuperamos primero al alumno
 		Pokemon pokemon = pokemonService.retrive(pokemonId);
-		
+		log.info("Pokemon: "+pokemon.getPokemonId());
 		// 2.- Recuperamos el grupo
 		Optional <Especialidad> grupoOpt = especialidadRepository.findById(groupId);
-		
+		log.info("Especialidad: "+grupoOpt.isPresent());
 		// 3.- Verificamos que el alumno y el grupo existan
 		if(!grupoOpt.isPresent() || pokemon == null) {
 			

@@ -93,7 +93,7 @@ public class LiberadosController {
 		if(especialidad != null) {
 			return ResponseEntity.status(HttpStatus.OK).body(especialidad);
 		} else {
-			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("No se encontro grupo de cuidado");
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("No se encontro grupo de liberacion");
 		}
 	}
 	

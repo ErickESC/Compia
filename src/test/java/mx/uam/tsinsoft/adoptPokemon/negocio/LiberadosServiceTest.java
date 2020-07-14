@@ -137,15 +137,19 @@ public class LiberadosServiceTest {
 	@Test
 	public void testSuccesfulUpdate() {
 		
+		Pokemon pokemon = new Pokemon();
+		pokemon.setStatus("en pruebas porque es muy rudo");
+		
 		Liberados grupo = new Liberados();
 		grupo.setClave("TST01");
 		
 		Liberados grupoActualizado = new Liberados();
-		grupo.setClave("TS-00P2");
+		grupoActualizado.setClave("TST01");
+		grupoActualizado.getPokemons().add(pokemon);
 		
-		//when(adopcionRepositoryMock.findById(1)).thenReturn(Optional.ofNullable(grupo));
+		when(liberadosRepositoryMock.findById("TST01")).thenReturn(Optional.ofNullable(grupo));
 
-		//when(adopcionRepositoryMock.save(grupoActualizado)).thenReturn(grupoActualizado);
+		when(liberadosRepositoryMock.save(grupoActualizado)).thenReturn(grupoActualizado);
 		
 		//Unidad que quiero probar
 		grupo = liberadosService.update(grupoActualizado);
@@ -162,7 +166,7 @@ public class LiberadosServiceTest {
 		Liberados grupoActualizado = new Liberados();
 		grupoActualizado.setClave("TST01");
 
-		when(liberadosRepositoryMock.findById("prueba")).thenReturn(Optional.ofNullable(null));
+		when(liberadosRepositoryMock.findById("TST01")).thenReturn(Optional.ofNullable(null));
 
 		grupo = liberadosService.update(grupoActualizado);
 		

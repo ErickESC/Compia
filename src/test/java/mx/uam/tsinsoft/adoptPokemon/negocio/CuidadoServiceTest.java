@@ -146,12 +146,12 @@ public class CuidadoServiceTest {
 		grupo.setClave("TST01");
 		
 		Cuidado grupoActualizado = new Cuidado();
-		grupo.setId(1);
-		grupo.setClave("TS-00P2");
+		grupoActualizado.setId(1);
+		grupoActualizado.setClave("TS-00P2");
 		
-		//when(adopcionRepositoryMock.findById(1)).thenReturn(Optional.ofNullable(grupo));
+		when(cuidadoRepositoryMock.findById(1)).thenReturn(Optional.ofNullable(grupo));
 
-		//when(adopcionRepositoryMock.save(grupoActualizado)).thenReturn(grupoActualizado);
+		when(cuidadoRepositoryMock.save(grupoActualizado)).thenReturn(grupoActualizado);
 		
 		//Unidad que quiero probar
 		grupo = cuidadoService.update(grupoActualizado);

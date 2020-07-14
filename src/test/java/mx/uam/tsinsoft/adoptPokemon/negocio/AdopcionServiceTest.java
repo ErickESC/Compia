@@ -146,12 +146,12 @@ public class AdopcionServiceTest {
 		grupo.setClave("TST01");
 		
 		Adopcion grupoActualizado = new Adopcion();
-		grupo.setId(1);
-		grupo.setClave("TS-00P2");
+		grupoActualizado.setId(1);
+		grupoActualizado.setClave("TS-00P2");
 		
-		//when(adopcionRepositoryMock.findById(1)).thenReturn(Optional.ofNullable(grupo));
+		when(adopcionRepositoryMock.findById(1)).thenReturn(Optional.ofNullable(grupo));
 
-		//when(adopcionRepositoryMock.save(grupoActualizado)).thenReturn(grupoActualizado);
+		when(adopcionRepositoryMock.save(grupoActualizado)).thenReturn(grupoActualizado);
 		
 		//Unidad que quiero probar
 		grupo = adopcionService.update(grupoActualizado);

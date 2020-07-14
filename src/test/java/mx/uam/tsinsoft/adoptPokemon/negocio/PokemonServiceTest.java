@@ -132,9 +132,9 @@ public class PokemonServiceTest {
 		pokemon.setStatus("SoloSolinSolito");
 		
 		Pokemon pokemonActualizado = new Pokemon();
-		pokemon.setPokemonId("SquirtleDePruebas");
-		pokemon.setStatus("Acompañadito");
-		pokemon.setInformation(informacion);
+		pokemonActualizado.setPokemonId("SquirtleDePruebas");
+		pokemonActualizado.setStatus("Acompañadito");
+		pokemonActualizado.setInformation(informacion);
 		
 		when(pokemonRepositoryMock.findById("SquirtleDePruebas")).thenReturn(Optional.ofNullable(pokemon));
 		
