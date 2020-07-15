@@ -11,7 +11,10 @@
         <!--Hojas de estilo personalizadas-->
         <link rel="stylesheet" href="css/normalize.css">
         <link rel="stylesheet" href="css/style.css">
-
+        
+        <!-- Script -->
+		<script type="js" src="reclutamiento.js"></script>
+		
         <!--Fuentes-->
         <link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&family=Lato:wght@400;700&display=swap" rel="stylesheet"> 
 
@@ -43,23 +46,38 @@
           </nav>
         </div>
 
-        <div class="contenedor-presentacion">
-          <div class="fondo-transparente">
-            <div class="presentacion container">
-              <div class="contenido-presentacion">
-                <h2 class="centrar-texto">Bienvenido a AdoptPokemon!</h2>
+        <main class="container seccion contenido-centrado">
+            <h2 class="centrar-texto">Reclutamiento Pokemon</h2>
 
-                <p class="justificar">AdoptPokemon es una organización dedicada a facilitar la adopción, cuidado y crianza de Pokemons que fueron encontrados con daños, abandonados o que otras personas o entrenadores trajeron al lugar por diferentes razones.</p>
-                <p>También puedes formar parte de AdoptPokemon convirtiendote en enfermero o rescatista pokemon.</p>
-                
-                <a class="boton boton-rojo" href="adopcion">Adoptar a un Pokemon</a>
-              </div>
-            
-            </div>
-          </div>
-        </div>
+            <form class="formularioReclutamiento" action="">
+                <fieldset>
+                    <legend class="centrar-texto aviso">Recuerda que debes estar registrado en AdoptPokemon para poder ser reclutado, si no es el caso puedes registrarte <a href="registro">aquí</a> </legend>
 
-        <footer class="site-footer seccion">
+                    <label for="idPokemon">Ingresa tu identificador de  AdoptPokemon:</label>
+                    <input type="text" id="idPokemon" placeholder="Tu Identificador" required>
+
+
+                    <select id="trabajo">
+                        <option value="" disabled selected>--Trabajo--</option>
+                        <option value="enfermero">Enfermero/a</option>
+                        <option value="rescatista">Rescatista</option>
+                    </select>
+
+                    <label for="mensaje">¿Por qué deseas ser enfermero (o rescatista) Pokemon?:</label>
+                    <textarea id="mensaje"></textarea>
+
+                </fieldset>
+
+                <p class="mt-3 aviso">Al dar clic en el botón enviar aceptas los términos y condiciones de Reclutamiento AdoptPokemon, Los administradores verificarán tu solicitud para validar si ésta es aprobada o no.</p>
+
+                <input type="submit" value="Enviar" class="boton boton-rojo">
+        </main>
+
+        
+
+        
+
+        <footer class="site-footer fixed-bottom seccion">
           <div class="container contenedor-footer">
               <nav class="navegacion-footer">
                   <a href="/">Inicio</a>
@@ -72,6 +90,7 @@
           </div>
         </footer>
         
+
         <!-- Optional JavaScript -->
         <!-- jQuery first, then Popper.js, then Bootstrap JS -->
         <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
