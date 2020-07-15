@@ -63,7 +63,7 @@ public class PokemonControllerIntegrationTest {
 		
 		// Creo el alumno que voy a enviar con datos distintos al creado en prepare
 		Pokemon pokemon = new Pokemon();
-		pokemon.setPokemonId("SquirtleDePruebas");
+		pokemon.setPokemonId("PikachuDePruebas");
 		pokemon.setStatus("SoloSolinSolito");
 
 		// Creo el encabezado
@@ -103,29 +103,4 @@ public class PokemonControllerIntegrationTest {
 	/*
 	 * PRUEBAS PARA RETRIEVE
 	 */
-	
-	@Test
-	public void testRetrieve200() {
-		
-		Pokemon pokemon = new Pokemon();
-		pokemon.setPokemonId("SquirtleDePruebas");
-		pokemon.setStatus("Acompañadito");
-
-		// Creo el encabezado
-		HttpHeaders headers = new HttpHeaders();
-		headers.set("content-type",MediaType.APPLICATION_JSON.toString());
-		
-		// Creo la petición con el alumno como body y el encabezado
-		HttpEntity <Pokemon> request = new HttpEntity <> (pokemon, headers);
-		
-		ResponseEntity <Pokemon> responseEntity = restTemplate.exchange("/pokemons/"+pokemon.getPokemonId(), HttpMethod.POST, request, Pokemon.class);
-
-		log.info("Me regresó:"+responseEntity.getBody());
-		
-		// Corroboro que el endpoint me regresa el estatus esperado
-		assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
-	}
-
-
-
 }
