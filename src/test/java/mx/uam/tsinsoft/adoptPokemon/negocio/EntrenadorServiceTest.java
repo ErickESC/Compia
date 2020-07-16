@@ -51,9 +51,6 @@ public class EntrenadorServiceTest {
 		Entrenador entrenador = new Entrenador();
 		entrenador.setId(1);
 		
-		//que no ha sido guardado
-		when(entrenadorRepositoryMock.findById(1)).thenReturn(Optional.ofNullable(null));
-		
 		//Simula lo que haria el alumnoRepository real cuando se le pasa un nuevo alumno para guardarlo
 		when(entrenadorRepositoryMock.save(entrenador)).thenReturn(entrenador);
 		
@@ -71,9 +68,8 @@ public class EntrenadorServiceTest {
 		entrenador.setId(1);
 		
 		//Simula lo que haria el alumnoRepository real cuando se le pasa una matricula de alumno
-		//que ya ha sido guardado
-		when(entrenadorRepositoryMock.findById(1)).thenReturn(Optional.ofNullable(entrenador));
 		
+		when(entrenadorRepositoryMock.save(entrenador)).thenReturn(null);
 		//Unidad que quiero probar
 		entrenador = entrenadorService.create(entrenador);
 		
