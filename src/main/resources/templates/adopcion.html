@@ -21,6 +21,63 @@
     </head>
     <body>
 
+		
+		<!--  COMIENZA CODIGO -->
+		<!-- Optional JavaScript -->
+        <!-- jQuery -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js">
+    	</script>
+			
+    	<script>
+    	$(document).ready(function(){
+       		
+    		$.ajaxSetup({contentType: "application/json; charset=utf-8"});
+
+       		var lista;
+       		
+       		var URL = "http://localhost:8080/adopciones";
+       		
+       		console.log("Ready");
+	       	
+       		$.get(URL,cargaGrupo);
+       		
+	       	function cargaGrupo(Grupos){
+	          			
+		          		// Recorre los objetos
+		          		var i;
+		                
+		          		var lista = Grupos[0].pokemons;
+		          		
+		          		for (i=0;i<lista.length;i++) {
+		    	     		var element = lista[i].information;
+		            		var pokemon = lista[i];
+		    	     		
+		             		console.log(element);
+		            
+		             		//Se asigna el indice al id del elemento
+		          	 		$("#contenido").append($("<img src=\""+element.image+"\" class=\"card-img-top\" alt=\"...\">"
+		         			
+		          	 		+"<div style=\"width:33%;\" class=\"card-body\">"
+		             			+"<h5 class=\"card-title\">Nombre: "+element.name+"</h5>"
+		             			+"<p class=\"card-text\">Descripción: "+element.description+"</p>"
+		             		+"</div>"
+		             		
+			                +"<ul class=\"list-group list-group-flush\">"
+			                  +"<li class=\"list-group-item\">Tipo: principal-"+element.first+", secundario-"+element.second+"</li>"
+			                  +"<li class=\"list-group-item\">Sexo: "+element.gender+"</li>"
+			                  +"<li class=\"list-group-item\">Estatus: "+pokemon.status+"</li>"
+			                +"</ul>"
+		             		
+			                +"<div class=\"card-body\">"
+			                  +"<a href=\"#\" class=\"card-link\">Adoptar</a>"
+			                  +"<a href=\"#\" class=\"card-link\">Ver más</a>"
+		             		+"</div>"));  
+		          		} 
+		     }
+    	});
+    	</script>
+    	
+
       <div class="sticky-top site-header">
           <div class="collapse" id="navbarToggleExternalContent">
             <div class="bg-dark pt-4 px-4 pb-1">
@@ -43,76 +100,10 @@
           </nav>
         </div>
 
-        <div class="container contenedor-principal my-5">
-          <div class="card estilo-carta">
-            <img src="https://vignette.wikia.nocookie.net/es.pokemon/images/6/66/Rayquaza.png/revision/latest/scale-to-width-down/340?cb=20150729161538" class="card-img-top" alt="...">
-            <div class="card-body">
-              <h5 class="card-title">Nombre: (Extraer dato)</h5>
-              <p class="card-text">Descripción: (Extraer dato)</p>
-            </div>
-            <ul class="list-group list-group-flush">
-              <li class="list-group-item">Tipo: (Extraer dato)</li>
-              <li class="list-group-item">Sexo: (Extraer dato)</li>
-              <li class="list-group-item">Estatus: (Extraer dato)</li>
-            </ul>
-            <div class="card-body">
-              <a href="#" class="card-link">Adoptar</a>
-              <a href="#" class="card-link">Ver más</a>
-            </div>
-          </div>
+        <div class="container contenedor-principal my-5" id="contenido">
 
-          <div class="card estilo-carta">
-            <img src="https://vignette.wikia.nocookie.net/es.pokemon/images/6/66/Rayquaza.png/revision/latest/scale-to-width-down/340?cb=20150729161538" class="card-img-top" alt="...">
-            <div class="card-body">
-              <h5 class="card-title">Nombre: (Extraer dato)</h5>
-              <p class="card-text">Descripción: (Extraer dato)</p>
-            </div>
-            <ul class="list-group list-group-flush">
-              <li class="list-group-item">Tipo: (Extraer dato)</li>
-              <li class="list-group-item">Sexo: (Extraer dato)</li>
-              <li class="list-group-item">Estatus: (Extraer dato)</li>
-            </ul>
-            <div class="card-body">
-              <a href="#" class="card-link">Adoptar</a>
-              <a href="#" class="card-link">Ver más</a>
-            </div>
-          </div>
-
-          <div class="card estilo-carta">
-            <img src="https://vignette.wikia.nocookie.net/es.pokemon/images/6/66/Rayquaza.png/revision/latest/scale-to-width-down/340?cb=20150729161538" class="card-img-top" alt="...">
-            <div class="card-body">
-              <h5 class="card-title">Nombre: (Extraer dato)</h5>
-              <p class="card-text">Descripción: (Extraer dato)</p>
-            </div>
-            <ul class="list-group list-group-flush">
-              <li class="list-group-item">Tipo: (Extraer dato)</li>
-              <li class="list-group-item">Sexo: (Extraer dato)</li>
-              <li class="list-group-item">Estatus: (Extraer dato)</li>
-            </ul>
-            <div class="card-body">
-              <a href="#" class="card-link">Adoptar</a>
-              <a href="#" class="card-link">Ver más</a>
-            </div>
-          </div>
-
-          <div class="card estilo-carta">
-            <img src="https://vignette.wikia.nocookie.net/es.pokemon/images/6/66/Rayquaza.png/revision/latest/scale-to-width-down/340?cb=20150729161538" class="card-img-top" alt="...">
-            <div class="card-body">
-              <h5 class="card-title">Nombre: (Extraer dato)</h5>
-              <p class="card-text">Descripción: (Extraer dato)</p>
-            </div>
-            <ul class="list-group list-group-flush">
-              <li class="list-group-item">Tipo: (Extraer dato)</li>
-              <li class="list-group-item">Sexo: (Extraer dato)</li>
-              <li class="list-group-item">Estatus: (Extraer dato)</li>
-            </ul>
-            <div class="card-body">
-              <a href="#" class="card-link">Adoptar</a>
-              <a href="#" class="card-link">Ver más</a>
-            </div>
-          </div>
-
-
+				<!-- LISTA POKEMONES -->
+            
         </div>
 
         <footer class="site-footer seccion">
@@ -129,10 +120,9 @@
           </div>
         </footer>
         
-        <!-- Optional JavaScript -->
-        <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+        <!-- Popper.js, then Bootstrap JS -->
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+        
     </body>
 </html>

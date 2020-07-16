@@ -152,8 +152,11 @@ public class AdopcionService {
 		Adopcion grupo = grupoOpt.get();
 		grupo.quitPokemon(pokemon);
 		
+		pokemon.setStatus("undefined");
+		
 		// 5.- Persistir el cambio
 		adopcionRepository.save(grupo);
+		pokemonService.update(pokemon);
 		
 		return true;
 	}
