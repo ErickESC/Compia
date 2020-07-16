@@ -46,6 +46,21 @@ public class MainController {
 		
 		return "registro";
 	}
-
+	
+	@GetMapping("/administrador")
+	public String administrador() {
+		
+		log.info("se invoco el metodo administrador()");
+		
+		return "administrador";
+	}
+	
+	@GetMapping("/enfermera")
+	public String enfermera() {
+		
+		log.info("se invoco el metodo enfermera()");
+		
+		return "enfermera";
+	}
 
 }
