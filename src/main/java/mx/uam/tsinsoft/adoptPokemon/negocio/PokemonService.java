@@ -3,6 +3,8 @@
  */
 package mx.uam.tsinsoft.adoptPokemon.negocio;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 
@@ -125,6 +127,49 @@ public class PokemonService {
 	public boolean exist(String Id){
 		log.info("Revisando existencia del pokemon con matricula "+Id);
 		return pokemonRepository.existsById(Id);
+	}
+	
+	/**
+	 * RELLENAR BASE DE DATOS
+	 * 
+	 */
+	
+	public List<Pokemon> rellena(String Id){
+		log.info("Rellenando");
+		List <Pokemon> pokemons = new ArrayList<>();
+		
+		Pokemon pokemon1 = new Pokemon();
+		pokemon1.setPokemonId("BUKA001200201");
+		pokemon1.setStatus("adopcion");
+		pokemon1.getInformation().setName("Bulbasaur");
+		pokemon1.getInformation().setPokedex("001");
+		pokemon1.getInformation().setImage("https://i.pinimg.com/originals/d6/61/96/d66196beb60d306a966ea39ed11c2b3d.png");
+		pokemon1.getInformation().setDescription("Puede sobrevivir largo tiempo sin probar bocado gracias a los nutrientes que guarda en el bulbo del lomo");
+		pokemon1.getInformation().setGender("masculino");
+		pokemon1.getInformation().setLevel("5");
+		pokemon1.getInformation().setNature("juguetona");
+		pokemon1.getInformation().setObjeto("carameloraro");
+		pokemon1.getInformation().setRegion("Kanto");
+		pokemon1.getInformation().setFirst("Planta");
+		pokemon1.getInformation().setSecond("Veneno");
+		
+		Pokemon pokemon2 = new Pokemon();
+		pokemon2.setPokemonId("");
+		pokemon2.setStatus("");
+		pokemon2.getInformation().setName("");
+		pokemon2.getInformation().setPokedex("");
+		pokemon2.getInformation().setImage("");
+		pokemon2.getInformation().setDescription("");
+		pokemon2.getInformation().setGender("");
+		pokemon2.getInformation().setLevel("");
+		pokemon2.getInformation().setNature("");
+		pokemon2.getInformation().setObjeto("");
+		pokemon2.getInformation().setRegion("");
+		pokemon2.getInformation().setFirst("");
+		pokemon2.getInformation().setSecond("");
+		
+		
+		return pokemons;
 	}
 	
 }
