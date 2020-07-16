@@ -38,17 +38,9 @@ public class EntrenadorService {
 	 * @return El entrenador recien creado, null de lo contrario
 	 */
 	public Entrenador create(Entrenador nuevoEntrenador) {
-		log.info("Creando pokemon con matricula "+nuevoEntrenador.getId());
-		//Regla de negocio: no se puede crear mas de un alumno con la misma matricula
-		Optional <Entrenador> pokemonOpt = entrenadorRepository.findById(nuevoEntrenador.getId());
-		
-		if(!pokemonOpt.isPresent()) {
-			log.info("Creado el entrenador con matricula "+nuevoEntrenador.getId());
-			return entrenadorRepository.save(nuevoEntrenador);
-		}else {
-			log.info("El alumno ya existe");
-			return null;
-		}
+		log.info("Creando Entrenador con matricula "+nuevoEntrenador.getId());
+		return entrenadorRepository.save(nuevoEntrenador);
+
 	}
 	
 	/**
