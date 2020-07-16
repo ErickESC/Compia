@@ -53,11 +53,14 @@
 		            		var pokemon = lista[i];
 		    	     		
 		             		console.log(element);
-		            
+		             		
 		             		//Se asigna el indice al id del elemento
-		          	 		$("#contenido").append($("<img src=\""+element.image+"\" class=\"card-img-top\" alt=\"...\">"
+		          	 		
+		             		$("#contenido").append($("<div>"));
+		             		
+		             		$("#contenido").append($("<img src=\""+element.image+"\" class=\"card-img-top\" alt=\"...\">"
 		         			
-		          	 		+"<div style=\"width:33%;\" class=\"card-body\">"
+		          	 		+"<div class=\"card-body\">"
 		             			+"<h5 class=\"card-title\">Nombre: "+element.name+"</h5>"
 		             			+"<p class=\"card-text\">Descripción: "+element.description+"</p>"
 		             		+"</div>"
@@ -71,7 +74,9 @@
 			                +"<div class=\"card-body\">"
 			                  +"<a href=\"#\" class=\"card-link\">Adoptar</a>"
 			                  +"<a href=\"#\" class=\"card-link\">Ver más</a>"
-		             		+"</div>"));  
+		             		
+			                +"</div>" 
+		             	   +"</div>")); 
 		          		} 
 		     }
     	});
