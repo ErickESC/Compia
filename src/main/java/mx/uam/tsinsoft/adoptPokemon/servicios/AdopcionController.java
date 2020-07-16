@@ -1,5 +1,6 @@
 package mx.uam.tsinsoft.adoptPokemon.servicios;
 
+import java.util.List;
 import java.util.Optional;
 
 import javax.validation.Valid;
@@ -19,7 +20,9 @@ import org.springframework.web.bind.annotation.RestController;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import mx.uam.tsinsoft.adoptPokemon.negocio.AdopcionService;
+import mx.uam.tsinsoft.adoptPokemon.negocio.PokemonService;
 import mx.uam.tsinsoft.adoptPokemon.negocio.modelo.Adopcion;
+import mx.uam.tsinsoft.adoptPokemon.negocio.modelo.Pokemon;
 
 /**
  * Controlador para el API rest
@@ -30,10 +33,12 @@ import mx.uam.tsinsoft.adoptPokemon.negocio.modelo.Adopcion;
 @RestController
 @Slf4j
 public class AdopcionController {
-	
-	
+	 
 	@Autowired
 	private AdopcionService adopcionService;
+	
+	@Autowired
+	private PokemonService pokemonService;
 	
 	/**
 	 * 
@@ -68,6 +73,23 @@ public class AdopcionController {
 			)
 	@GetMapping(path = "/adopciones", produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity <?> retrieveAll() {
+		
+		log.info("Resibi llama a retrive all");
+		
+		List <Pokemon> pokemons = pokemonService.rellena();
+		
+		Adopcion nuevoGrupo = new Adopcion();
+		nuevoGrupo.setClave("ADPN001");
+		nuevoGrupo.setId(1);
+		nuevoGrupo.setNombre("Adopcion");
+		
+		adopcionService.create(nuevoGrupo);
+		
+		for(int i=0; i<pokemons.size(); i++) {
+			if(pokemons.get(i).getStatus() == "adopcion" || pokemons.get(i).getStatus() == "adopción") {
+				adopcionService.addPokemonToAdoption(1, pokemons.get(i).getPokemonId());
+			}
+		}
 		
 		Iterable <Adopcion> result = adopcionService.retriveAll();
 		

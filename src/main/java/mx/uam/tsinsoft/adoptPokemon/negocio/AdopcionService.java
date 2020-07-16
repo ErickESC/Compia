@@ -117,7 +117,7 @@ public class AdopcionService {
 		Optional <Adopcion> grupoOpt = adopcionRepository.findById(groupId);
 		
 		if(!grupoOpt.isPresent() || pokemon == null) {
-			
+			log.info("Regreso false--- grupo: "+grupoOpt.isPresent()+" pokemon: "+pokemon.getPokemonId());
 			return false;
 		}
 
@@ -125,7 +125,7 @@ public class AdopcionService {
 		grupo.addPokemon(pokemon);
 		
 		adopcionRepository.save(grupo);
-		
+		log.info("Guardo pokemon");
 		return true;
 	}
 	

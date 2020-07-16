@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 
 import lombok.extern.slf4j.Slf4j;
 import mx.uam.tsinsoft.adoptPokemon.datos.PokemonRepository;
+import mx.uam.tsinsoft.adoptPokemon.negocio.modelo.Information;
 import mx.uam.tsinsoft.adoptPokemon.negocio.modelo.Pokemon;
 
 /**
@@ -38,8 +39,6 @@ public class PokemonService {
 		
 		if(!pokemonOpt.isPresent()) {
 			log.info("Creado el pokemon con matricula "+nuevoPokemon.getPokemonId());
-			String idCompleto = nuevoPokemon.getPokemonId().concat(Integer.toString((int)Math.floor(Math.random()*100)));
-			nuevoPokemon.setPokemonId(idCompleto);
 			return pokemonRepository.save(nuevoPokemon);
 		}else {
 			log.info("El alumno ya existe");
@@ -138,9 +137,12 @@ public class PokemonService {
 		log.info("Rellenando");
 		List <Pokemon> pokemons = new ArrayList<>();
 		
+		Information information = new Information();
+		
 		Pokemon pokemon = new Pokemon();
 		pokemon.setPokemonId("BUKA001200201");
 		pokemon.setStatus("adopcion");
+		pokemon.setInformation(information);
 		pokemon.getInformation().setName("Bulbasaur");
 		pokemon.getInformation().setPokedex("001");
 		pokemon.getInformation().setImage("https://i.pinimg.com/originals/d6/61/96/d66196beb60d306a966ea39ed11c2b3d.png");
@@ -155,9 +157,11 @@ public class PokemonService {
 		
 		pokemons.add(pokemon);
 		
+		Information information1 = new Information();
 		Pokemon pokemon1 = new Pokemon();
 		pokemon1.setPokemonId("GEKA074200312");
 		pokemon1.setStatus("adopción");
+		pokemon1.setInformation(information1);
 		pokemon1.getInformation().setName("Geodude");
 		pokemon1.getInformation().setPokedex("074");
 		pokemon1.getInformation().setImage("https://images.wikidexcdn.net/mwuploads/wikidex/1/12/latest/20161018163121/Geodude.png");
@@ -172,9 +176,11 @@ public class PokemonService {
 		
 		pokemons.add(pokemon1);	
 
+		Information information2 = new Information();
 		Pokemon pokemon2 = new Pokemon();
 		pokemon2.setPokemonId("SNKA142194502");
 		pokemon2.setStatus("cuidado");
+		pokemon2.setInformation(information2);
 		pokemon2.getInformation().setName("Snorlax");
 		pokemon2.getInformation().setPokedex("143");
 		pokemon2.getInformation().setImage("https://images.wikidexcdn.net/mwuploads/wikidex/0/0b/latest/20160904204605/Snorlax.png");
@@ -189,9 +195,11 @@ public class PokemonService {
 		
 		pokemons.add(pokemon2);
 
+		Information information3 = new Information();
 		Pokemon pokemon3 = new Pokemon();
 		pokemon3.setPokemonId("WOJO194200605");
 		pokemon3.setStatus("adopción");
+		pokemon3.setInformation(information3);
 		pokemon3.getInformation().setName("Wooper");
 		pokemon3.getInformation().setPokedex("194");
 		pokemon3.getInformation().setImage("https://images.wikidexcdn.net/mwuploads/wikidex/4/42/latest/20160703191603/Wooper.png");
@@ -206,9 +214,11 @@ public class PokemonService {
 		
 		pokemons.add(pokemon3);	
 
+		Information information4 = new Information();
 		Pokemon pokemon4 = new Pokemon();
 		pokemon4.setPokemonId("DRJO149200714");
 		pokemon4.setStatus("liberado");
+		pokemon4.setInformation(information4);
 		pokemon4.getInformation().setName("Dragonite");
 		pokemon4.getInformation().setPokedex("149");
 		pokemon4.getInformation().setImage("https://images.wikidexcdn.net/mwuploads/wikidex/a/a6/latest/20151017110809/Dragonite.png");
@@ -222,10 +232,12 @@ public class PokemonService {
 		pokemon4.getInformation().setSecond("Volador");
 		
 		pokemons.add(pokemon4);	
-
+		
+		Information information5 = new Information();
 		Pokemon pokemon5 = new Pokemon();
 		pokemon5.setPokemonId("MAKA18320190603");
 		pokemon5.setStatus("liberado");
+		pokemon5.setInformation(information5);
 		pokemon5.getInformation().setName("Marill");
 		pokemon5.getInformation().setPokedex("183");
 		pokemon5.getInformation().setImage("https://images.wikidexcdn.net/mwuploads/wikidex/5/55/latest/20160309224636/Marill.png");
@@ -239,10 +251,12 @@ public class PokemonService {
 		pokemon5.getInformation().setSecond("Hada");
 		
 		pokemons.add(pokemon5);	
-
+		
+		Information information6 = new Information();
 		Pokemon pokemon6 = new Pokemon();
 		pokemon6.setPokemonId("LUKA448200807");
 		pokemon6.setStatus("cuidado");
+		pokemon6.setInformation(information6);
 		pokemon6.getInformation().setName("Lucario");
 		pokemon6.getInformation().setPokedex("448");
 		pokemon6.getInformation().setImage("https://images.wikidexcdn.net/mwuploads/wikidex/d/d0/latest/20150621180604/Lucario.png");
@@ -256,10 +270,12 @@ public class PokemonService {
 		pokemon6.getInformation().setSecond("Acero");
 		
 		pokemons.add(pokemon6);	
-
+		
+		Information information7 = new Information();
 		Pokemon pokemon7 = new Pokemon();
 		pokemon7.setPokemonId("LIAL725200606");
 		pokemon7.setStatus("adopción");
+		pokemon7.setInformation(information7);
 		pokemon7.getInformation().setName("Litten");
 		pokemon7.getInformation().setPokedex("725");
 		pokemon7.getInformation().setImage("https://images.wikidexcdn.net/mwuploads/wikidex/6/6e/latest/20170823184241/Litten.png");
@@ -273,10 +289,12 @@ public class PokemonService {
 		pokemon7.getInformation().setSecond("none");
 		
 		pokemons.add(pokemon7);	
-
+		
+		Information information8 = new Information();
 		Pokemon pokemon8 = new Pokemon();
 		pokemon8.setPokemonId("MAAL081200701");
 		pokemon8.setStatus("liberado");
+		pokemon8.setInformation(information8);
 		pokemon8.getInformation().setName("Magnemite");
 		pokemon8.getInformation().setPokedex("081");
 		pokemon8.getInformation().setImage("https://images.wikidexcdn.net/mwuploads/wikidex/8/80/latest/20080822131212/Magnemite.png");
@@ -290,10 +308,11 @@ public class PokemonService {
 		pokemon8.getInformation().setSecond("Acero");
 		
 		pokemons.add(pokemon8);	
-
+		Information information9 = new Information();
 		Pokemon pokemon9 = new Pokemon();
 		pokemon9.setPokemonId("PAGA674190208");
 		pokemon9.setStatus("adopción");
+		pokemon9.setInformation(information9);
 		pokemon9.getInformation().setName("Pancham");
 		pokemon9.getInformation().setPokedex("674");
 		pokemon9.getInformation().setImage("https://images.wikidexcdn.net/mwuploads/wikidex/c/c9/latest/20190425222516/Pancham.png");
@@ -307,10 +326,11 @@ public class PokemonService {
 		pokemon9.getInformation().setSecond("none");
 		
 		pokemons.add(pokemon9);	
-
+		Information information10 = new Information();
 		Pokemon pokemon10 = new Pokemon();
 		pokemon10.setPokemonId("WOGA202200609");
 		pokemon10.setStatus("adopción");
+		pokemon10.setInformation(information10);
 		pokemon10.getInformation().setName("Wobbuffet");
 		pokemon10.getInformation().setPokedex("202");
 		pokemon10.getInformation().setImage("https://images.wikidexcdn.net/mwuploads/wikidex/c/cf/latest/20160625152946/Wobbuffet.png");
@@ -324,10 +344,11 @@ public class PokemonService {
 		pokemon10.getInformation().setSecond("none");
 		
 		pokemons.add(pokemon10);
-
+		Information information11 = new Information();
 		Pokemon pokemon11 = new Pokemon();
 		pokemon11.setPokemonId("SQKA007200201");
 		pokemon11.setStatus("adopción");
+		pokemon11.setInformation(information11);
 		pokemon11.getInformation().setName("Squirtle");
 		pokemon11.getInformation().setPokedex("007");
 		pokemon11.getInformation().setImage("https://images.wikidexcdn.net/mwuploads/wikidex/e/e3/latest/20160309230820/Squirtle.png");
@@ -335,16 +356,17 @@ public class PokemonService {
 		pokemon11.getInformation().setGender("Macho");
 		pokemon11.getInformation().setLevel("9");
 		pokemon11.getInformation().setNature("mansa");
-	pokemon11.getInformation().setObjeto("bayamarga");
-	pokemon11.getInformation().setRegion("Kanto");
-	pokemon11.getInformation().setFirst("agua");
-	pokemon11.getInformation().setSecond("none");
+		pokemon11.getInformation().setObjeto("bayamarga");
+		pokemon11.getInformation().setRegion("Kanto");
+		pokemon11.getInformation().setFirst("agua");
+		pokemon11.getInformation().setSecond("none");
 
-	pokemons.add(pokemon11);	
-
+		pokemons.add(pokemon11);	
+		Information information12 = new Information();
 	Pokemon pokemon12 = new Pokemon();
 	pokemon12.setPokemonId("TOHO255200201");
 	pokemon12.setStatus("cuidado");
+	pokemon12.setInformation(information12);
 	pokemon12.getInformation().setName("Torchic");
 	pokemon12.getInformation().setPokedex("255");
 	pokemon12.getInformation().setImage("https://images.wikidexcdn.net/mwuploads/wikidex/4/4f/latest/20140612153748/Torchic.png");
@@ -358,10 +380,11 @@ public class PokemonService {
 	pokemon12.getInformation().setSecond("none");
 
 	pokemons.add(pokemon12);
-	
+	Information information13 = new Information();
 	Pokemon pokemon13 = new Pokemon();
 	pokemon13.setPokemonId("CHSI390200201");
 	pokemon13.setStatus("adopción");
+	pokemon13.setInformation(information13);
 	pokemon13.getInformation().setName("Chimchar");
 	pokemon13.getInformation().setPokedex("390");
 	pokemon13.getInformation().setImage("https://images.wikidexcdn.net/mwuploads/wikidex/9/9f/latest/20120927233211/Chimchar.png");
@@ -375,10 +398,11 @@ public class PokemonService {
 	pokemon13.getInformation().setSecond("none");
 
 	pokemons.add(pokemon13);	
-
+	Information information14 = new Information();
 	Pokemon pokemon14 = new Pokemon();
 	pokemon14.setPokemonId("OSTE501200201");
 	pokemon14.setStatus("liberado");
+	pokemon14.setInformation(information14);
 	pokemon14.getInformation().setName("Oshawott");
 	pokemon14.getInformation().setPokedex("501");
 	pokemon14.getInformation().setImage("https://images.wikidexcdn.net/mwuploads/wikidex/9/90/Oshawott_(2010).png");
@@ -392,10 +416,11 @@ public class PokemonService {
 	pokemon14.getInformation().setSecond("none");
 
 	pokemons.add(pokemon14);
-
+	Information information15 = new Information();
 	Pokemon pokemon15 = new Pokemon();
 	pokemon15.setPokemonId("FEKA653200201");
 	pokemon15.setStatus("adopción");
+	pokemon15.setInformation(information15);
 	pokemon15.getInformation().setName("Fennekin");
 	pokemon15.getInformation().setPokedex("653");
 	pokemon15.getInformation().setImage("https://images.wikidexcdn.net/mwuploads/wikidex/thumb/1/11/latest/20190430161933/Fennekin.png/200px-Fennekin.png");
@@ -409,10 +434,11 @@ public class PokemonService {
 	pokemon15.getInformation().setSecond("none");
 
 	pokemons.add(pokemon15);	
-
+	Information information16 = new Information();
 	Pokemon pokemon16 = new Pokemon();
 pokemon16.setPokemonId("LIAL725200201");
 pokemon16.setStatus("especialidad");
+pokemon16.setInformation(information16);
 pokemon16.getInformation().setName("Litten");
 pokemon16.getInformation().setPokedex("725");
 pokemon16.getInformation().setImage("https://images.wikidexcdn.net/mwuploads/wikidex/thumb/6/6e/latest/20170823184241/Litten.png/200px-Litten.png");
@@ -426,10 +452,11 @@ pokemon16.getInformation().setFirst("fuego");
 pokemon16.getInformation().setSecond("none");
 
 pokemons.add(pokemon16);	
-
+Information information17 = new Information();
 Pokemon pokemon17 = new Pokemon();
 pokemon17.setPokemonId("SCGA813200201");
 pokemon17.setStatus("adopción");
+pokemon17.setInformation(information17);
 pokemon17.getInformation().setName("Scorbunny");
 pokemon17.getInformation().setPokedex("813");
 pokemon17.getInformation().setImage("https://images.wikidexcdn.net/mwuploads/wikidex/thumb/c/cc/latest/20190816174326/Scorbunny.png/200px-Scorbunny.png");
@@ -443,10 +470,11 @@ pokemon17.getInformation().setFirst("fuego");
 pokemon17.getInformation().setSecond("none");
 
 pokemons.add(pokemon17);	
-
+Information information18 = new Information();
 Pokemon pokemon18 = new Pokemon();
 pokemon18.setPokemonId("LIKA667200201");
 pokemon18.setStatus("cuidado");
+pokemon18.setInformation(information18);
 pokemon18.getInformation().setName("Litleo");
 pokemon18.getInformation().setPokedex("667");
 pokemon18.getInformation().setImage("https://images.wikidexcdn.net/mwuploads/wikidex/thumb/c/c7/latest/20130614124212/Litleo.png/200px-Litleo.png");
@@ -460,10 +488,11 @@ pokemon18.getInformation().setFirst("fuego");
 pokemon18.getInformation().setSecond("normal");
 
 pokemons.add(pokemon18);	
-
+Information information19 = new Information();
 Pokemon pokemon19 = new Pokemon();
 pokemon19.setPokemonId("ROAL722200201");
 pokemon19.setStatus("adopción");
+pokemon19.setInformation(information19);
 pokemon19.getInformation().setName("Rowlett");
 pokemon19.getInformation().setPokedex("722");
 pokemon19.getInformation().setImage("https://images.wikidexcdn.net/mwuploads/wikidex/thumb/f/ff/latest/20170823183914/Rowlet.png/200px-Rowlet.png");
@@ -477,10 +506,11 @@ pokemon19.getInformation().setFirst("planta");
 pokemon19.getInformation().setSecond("volador");
 
 pokemons.add(pokemon19);	
-
+Information information20 = new Information();
 Pokemon pokemon20 = new Pokemon();
 pokemon20.setPokemonId("MUHO258200201");
 pokemon20.setStatus("adopcion");
+pokemon20.setInformation(information20);
 pokemon20.getInformation().setName("Mudkip");
 pokemon20.getInformation().setPokedex("258");
 pokemon20.getInformation().setImage("https://images.wikidexcdn.net/mwuploads/wikidex/a/ae/Mudkip.png");
@@ -493,11 +523,12 @@ pokemon20.getInformation().setRegion("Hoenn");
 pokemon20.getInformation().setFirst("agua");
 pokemon20.getInformation().setSecond("none");
 
-pokemons.add(pokemon2);
-
+pokemons.add(pokemon20);
+Information information21 = new Information();
 Pokemon pokemon21 = new Pokemon();
 pokemon21.setPokemonId("GEKA094200201");
 pokemon21.setStatus("adopcion");
+pokemon21.setInformation(information21);
 pokemon21.getInformation().setName("Gengar");
 pokemon21.getInformation().setPokedex("094");
 pokemon21.getInformation().setImage("https://pm1.narvii.com/6148/b648df6e769945f1a4b06cee52f0d892e92ac883_hq.jpg");
@@ -512,10 +543,11 @@ pokemon21.getInformation().setSecond("Veneno");
 
 pokemons.add(pokemon21);
 
-
+Information information22 = new Information();
 Pokemon pokemon22 = new Pokemon();
 pokemon22.setPokemonId("AEKA142200201");
 pokemon22.setStatus("adopcion");
+pokemon22.setInformation(information22);
 pokemon22.getInformation().setName("Aerodactyl");
 pokemon22.getInformation().setPokedex("142");
 pokemon22.getInformation().setImage("https://assets.pokemon.com/assets/cms2/img/pokedex/full/142.png");
@@ -529,10 +561,11 @@ pokemon22.getInformation().setFirst("Roca");
 pokemon22.getInformation().setSecond("Volador");
 
 pokemons.add(pokemon22);
-
+Information information23 = new Information();
 Pokemon pokemon23 = new Pokemon();
 pokemon23.setPokemonId("TOJO158200201");
 pokemon23.setStatus("adopcion");
+pokemon23.setInformation(information23);
 pokemon23.getInformation().setName("Totodile");
 pokemon23.getInformation().setPokedex("158");
 pokemon23.getInformation().setImage("https://assets.pokemon.com/assets/cms2/img/pokedex/full/158.png");
@@ -546,10 +579,11 @@ pokemon23.getInformation().setFirst("Agua");
 pokemon23.getInformation().setSecond("none");
 
 pokemons.add(pokemon23);
-
+Information information24 = new Information();
 Pokemon pokemon24= new Pokemon();
 pokemon24.setPokemonId("SNTE495200201");
 pokemon24.setStatus("adopcion");
+pokemon24.setInformation(information24);
 pokemon24.getInformation().setName("Snivy");
 pokemon24.getInformation().setPokedex("495");
 pokemon24.getInformation().setImage("https://assets.pokemon.com/assets/cms2/img/pokedex/full/495.png");
@@ -565,11 +599,12 @@ pokemon24.getInformation().setSecond("none");
 pokemons.add(pokemon24);
 
 
-
+Information information25 = new Information();
 
 Pokemon pokemon25= new Pokemon();
 pokemon25.setPokemonId("MEKA150200909");
 pokemon25.setStatus("adopcion");
+pokemon25.setInformation(information25);
 pokemon25.getInformation().setName("Mewtwo");
 pokemon25.getInformation().setPokedex("150");
 pokemon25.getInformation().setImage("https://img2.wikia.nocookie.net/__cb20121223053851/sonicpokemon/images/d/d3/Mewtwo.png");
@@ -583,10 +618,11 @@ pokemon25.getInformation().setFirst("Psiquico");
 pokemon25.getInformation().setSecond("none");
 
 pokemons.add(pokemon25);
-
+Information information26 = new Information();
 Pokemon pokemon26= new Pokemon();
 pokemon26.setPokemonId("DEHO386200201");
 pokemon26.setStatus("adopcion");
+pokemon26.setInformation(information26);
 pokemon26.getInformation().setName("Deoxys");
 pokemon26.getInformation().setPokedex("386");
 pokemon26.getInformation().setImage("https://assets.pokemon.com/assets/cms2/img/pokedex/full/386_f2.png");
@@ -599,8 +635,10 @@ pokemon26.getInformation().setRegion("Hoenn");
 pokemon26.getInformation().setFirst("Psiquico");
 pokemon26.getInformation().setSecond("none");
 
+log.info("Agregando a lista");
 pokemons.add(pokemon26);
-
+		
+log.info("Persistiendo");
 		for(int i=0; i<pokemons.size(); i++) {
 			pokemonRepository.save(pokemons.get(i));
 		}

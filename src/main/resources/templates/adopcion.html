@@ -56,9 +56,8 @@
 		             		
 		             		//Se asigna el indice al id del elemento
 		          	 		
-		             		$("#contenido").append($("<div>"));
-		             		
-		             		$("#contenido").append($("<img src=\""+element.image+"\" class=\"card-img-top\" alt=\"...\">"
+		             	  $("#contenido").append($("<div class=\"card estilo-carta\" id=\""+i+"\">"));
+		             		$("#"+i).append($("<img src=\""+element.image+"\" class=\"card-img-top\" alt=\"...\">"
 		         			
 		          	 		+"<div class=\"card-body\">"
 		             			+"<h5 class=\"card-title\">Nombre: "+element.name+"</h5>"
@@ -74,8 +73,8 @@
 			                +"<div class=\"card-body\">"
 			                  +"<a href=\"#\" class=\"card-link\">Adoptar</a>"
 			                  +"<a href=\"#\" class=\"card-link\">Ver más</a>"
-		             		
 			                +"</div>" 
+			                
 		             	   +"</div>")); 
 		          		} 
 		     }

@@ -32,6 +32,7 @@ public class PokemonController {
 	@Autowired
 	private PokemonService pokemonService;
 	
+	
 	/**
 	 * 
 	 * @param nuevoPokemon
