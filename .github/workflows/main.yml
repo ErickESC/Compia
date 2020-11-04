@@ -33,21 +33,20 @@ jobs:
           echo test, and deploy your project.
           
       - name: scc-docker-action
-      # You may pin to the exact commit or the version.
-      # uses: iRyanBell/scc-docker-action@6cc2c22d50dcd97273e3c72cc6f55507ba01da5d
-      uses: iRyanBell/scc-docker-action@v1.0.0
-      with:
-        # CLI args
-        args: # optional
+        # You may pin to the exact commit or the version.
+        # uses: iRyanBell/scc-docker-action@6cc2c22d50dcd97273e3c72cc6f55507ba01da5d
+        uses: iRyanBell/scc-docker-action@v1.0.0
+        with:
+          # CLI args
+          args: noargs
         
       - name: Depends DV8 analysis
-      # You may pin to the exact commit or the version.
-      # uses: otrebmuh/dv8-github-action@1bea892afc4f4e22ccf9845237421c9a048294bc
-      uses: otrebmuh/dv8-github-action@v0.5
-      with:
-        # Language of the program
-        language: 
-        # License key
-        licenseKey: 
-        # Activation code
-        activationCode: 
+        # You may pin to the exact commit or the version.
+        # uses: otrebmuh/dv8-github-action@1bea892afc4f4e22ccf9845237421c9a048294bc
+        uses: otrebmuh/dv8-github-action@v0.5
+        with:
+          # Language of the program
+          language: 'java'
+      # Use the output from the depends step
+      - name: Depends result
+        run: echo "The result of the analysis was ${{ steps.depends.outputs.result }}"
