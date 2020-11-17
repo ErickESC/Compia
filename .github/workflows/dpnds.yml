@@ -25,7 +25,7 @@ jobs:
         uses: actions/checkout@v2
         
       - name: Depends analysis step
-        uses: ./ # Uses an action in the root directory
+        uses: otrebmuh/dv8-github-action@v0.4
         id: depends
         with:
           language: 'java'
