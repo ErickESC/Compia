@@ -1,0 +1,233 @@
+<!doctype html>
+    <html lang="en">
+    <head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+
+        <!--Hojas de estilo personalizadas-->
+        <link rel="stylesheet" href="css/normalize.css">
+        <link rel="stylesheet" href="css/style.css">
+
+        <!--Fuentes-->
+        <link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&family=Lato:wght@400;700&display=swap" rel="stylesheet"> 
+
+        <!--Titulo de la página-->
+        <link rel="shortcut icon" href="img/iconos/pokemon16.png"> 
+        <title>AdoptPokemon</title>
+    </head>
+    <body>
+    <script>
+    	$(document).ready(function(){
+       		
+    		$.ajaxSetup({contentType: "application/json; charset=utf-8"});
+
+       		var lista;
+       		
+       		var URL = "http://localhost:8080/pokemons";
+       		
+       		console.log("Ready");
+	       	
+       		$.get(URL,cargaGrupo);
+       		
+	       	function cargaGrupo(Grupos){
+	          			
+		          		// Recorre los objetos
+		          		var i;
+		                
+		          		var lista = Grupos[0].pokemons;
+		          		
+		          		for (i=0;i<lista.length;i++) {
+		    	     		var element = lista[i].information;
+		            		var pokemon = lista[i];
+		    	     		
+		             		console.log(element);
+		             		
+		             		//Se asigna el indice al id del elemento
+		          	 		
+		             		$("#contenido").append($("<div>"));
+		             		
+		             		$("#contenido").append($("<img src=\""+element.image+"\" class=\"card-img-top\" alt=\"...\">"
+		         			
+		          	 		+"<div class=\"card-body\">"
+		             			+"<h5 class=\"card-title\">Nombre: "+element.name+"</h5>"
+		             			+"<p class=\"card-text\">Descripción: "+element.description+"</p>"
+		             		+"</div>"
+		             		
+			                +"<ul class=\"list-group list-group-flush\">"
+			                  +"<li class=\"list-group-item\">Tipo: principal-"+element.first+", secundario-"+element.second+"</li>"
+			                  +"<li class=\"list-group-item\">Sexo: "+element.gender+"</li>"
+			                  +"<li class=\"list-group-item\">Estatus: "+pokemon.status+"</li>"
+			                +"</ul>"
+		             		
+			                +"<div class=\"card-body\">"
+			                  +"<a href=\"#\" class=\"card-link\">Adoptar</a>"
+			                  +"<a href=\"#\" class=\"card-link\">Ver más</a>"
+		             		
+			                +"</div>" 
+		             	   +"</div>")); 
+		          		} 
+		     }
+    	});
+    	</script>
+	
+		<!-- jQuery -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js">
+    	</script>
+	
+      <div class="sticky-top site-header">
+          <div class="collapse" id="navbarToggleExternalContent">
+            <div class="bg-dark pt-4 px-4 pb-1">
+              <p>Contenido de la Página</p>
+              <ul class="menu-header">
+                <li><img src="img/iconos/pokemon16.png" alt=""> <a href="index.html">Inicio</a></li>
+                <li><img src="img/iconos/pokemon16.png" alt=""> <a href="adopcion.html">Adopción</a></li>
+                <li><img src="img/iconos/pokemon16.png" alt=""> <a href="reclutamiento.html">Reclutamiento</a></li>
+                <li><img src="img/iconos/pokemon16.png" alt=""> <a href="registro.html">Regístrate</a></li>
+              </ul>
+            </div>
+          </div>
+          <nav class="navbar navbar-dark bg-dark">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <h2 class="titulo-principal">AdoptPokemon</h2>
+            <img src="img/iconos/pokemon32.png" alt="">
+            
+          </nav>
+        </div>
+
+        <main class="container seccion contenido-centrado">
+            <h2 class="centrar-texto">Ventana del administrador</h2>
+
+            <h3 class="centrar-texto">Pokemones</h3>
+
+
+            <form class="formularioAdministrador" action="">
+                <fieldset>
+                    <legend class="centrar-texto aviso">Formulario para registrar nuevos pokemones o actualizar datos de un nuevos pokemon así como buscarlos por ID</legend>
+
+                    <label for="idPokemon">ID del Pokemon:</label>
+                    <input type="text" id="idPokemon"  required>
+
+                    <label for="estatusPokemon">Estatus del pokemon:</label>
+                    <select id="estatusPokemon">
+                        <option value="" disabled selected>--Seleccione el Estatus del Pokemon--</option>
+                        <option value="procesoAdopcion">En proceso de adopción</option>
+                        <option value="adoptado">Adoptado</option>
+                    </select>
+
+                    <label for="nombrePokemon">Nombre del Pokemon:</label>
+                    <input type="text" id="nombrePokemon">
+
+                    <label for="sexoPokemon">Sexo del Pokemon:</label>
+                    <select id="sexoPokemon">
+                        <option value="" disabled selected>--Seleccione el sexo del Pokemon--</option>
+                        <option value="macho">Macho</option>
+                        <option value="hembra">Hembra</option>
+                        <option value="indefinido">Indefinido (aplica en Pokemon legendarios)</option>
+                    </select>
+
+                    <label for="objetoPokemon">Objeto del Pokemon:</label>
+                    <input type="text" id="objetoPokemon">
+
+                    <label for="naturalezaPokemon">Naturaleza del Pokemon:</label>
+                    <input type="text" id="naturalezaPokemon">
+
+                    <label for="descripcionPokemon">Descripción del Pokemon:</label>
+                    <input type="text" id="descripcionPokemon">
+
+                    <label for="numeroPokedex">Número en la Pokédex:</label>
+                    <input type="number" id="numeroPokemon" min="1" max="890" step="1">
+
+                    <label for="primerTipo">Primer tipo del Pokemon:</label>
+                    <input type="text" id="primerTipo">
+
+                    <label for="segundoTipo">Segundo tipo del Pokemon:</label>
+                    <input type="text" id="segundoTipo">
+
+
+                    <label for="regionPokemon">Región del pokemon</label>
+                    <select id="regionPokemon">
+                        <option value="" disabled selected>--Seleccione su región--</option>
+                        <option value="kanto">Kanto</option>
+                        <option value="johto">Johto</option>
+                        <option value="hoenn">Hoenn</option>
+                        <option value="sinnoh">Sinnoh</option>
+                        <option value="teselia">Teselia</option>
+                        <option value="kalos">Kalos</option>
+                        <option value="alola">Alola</option>
+                        <option value="galar">Galar</option>
+                    </select>
+
+
+                </fieldset>
+
+                <input id="registrarPokemon" type="submit" value="Registrar" class="boton boton-rojo">
+                <input id="actualizarPokemon" type="submit" value="Actualizar" class="boton boton-rojo">
+                <input id="buscarAdmin" type="submit" value="Buscar" class="boton boton-rojo">
+            </form>
+
+            <h3 class="centrar-texto pt-5">Entrenadores</h3>
+
+            <form class="formularioAdministradorEntrenador" action="">
+                <fieldset>
+                    <legend class="centrar-texto aviso">Formulario para actualizar o buscar datos de entrenadores pokemon</legend>
+
+                    <label for="idEntrenador">ID del entrenador Pokemon:</label>
+                    <input type="text" id="idEntrenador"  required>
+
+                    <label for="nombreEntrenador">Nombre del entrenador:</label>
+                    <input type="text" id="nombreEntrenador">
+
+                    <label for="emailEntrenador">E-mail del entrenador:</label>
+                    <input type="email" id="emailEntrenador">
+
+                    <label for="direccionEntrenador">Dirección del entrenador:</label>
+                    <input type="text" id="direccionEntrenador">
+
+                    <label for="passwordEntrenador">Contraseña del entrenador:</label>
+                    <input type="text" id="passwordEntrenador">
+
+                    <label for="estatusTrabajador">Estatus del entrenador (trabajo):</label>
+                    <select id="estatusTrabajador">
+                        <option value="" disabled selected>--Seleccione el Estatus del entrenador--</option>
+                        <option value="reclutadoEnfermero">Enfermero/a</option>
+                        <option value="reclutadoRescatista">Rescatista</option>
+                        <option value="noReclutado">No reclutado</option>
+                    </select>
+
+                </fieldset>
+
+                <input id="actualizarEntrenador" type="submit" value="Actualizar" class="boton boton-rojo">
+                <input id="buscarAdminEntrenador" type="submit" value="Buscar" class="boton boton-rojo">
+            </form>
+
+        </main>
+
+
+        
+
+        <footer class="site-footer  seccion">
+          <div class="container contenedor-footer">
+              <nav class="navegacion-footer">
+                  <a href="index.html">Inicio</a>
+                  <a href="adopcion.html">Adopción</a>
+                  <a href="reclutamiento.html">Reclutamiento</a>
+               
+                  <a href="registro.html">Regístrate</a>
+              </nav>
+
+              <p class="copyright">Todos los Derechos Reservados EquipoRocket 2020 &copy;</p>
+          </div>
+        </footer>
+        
+        <!-- Popper.js, then Bootstrap JS -->
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+ 
+    </body>
+</html>

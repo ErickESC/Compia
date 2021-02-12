@@ -52,7 +52,7 @@ public class EntrenadorController {
 		if(grupo != null) {
 			return ResponseEntity.status(HttpStatus.CREATED).body(grupo);
 		}else {
-			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("No se puede crear el grupo");
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("No se puede crear el Entrenador");
 		}
 	}
 	
