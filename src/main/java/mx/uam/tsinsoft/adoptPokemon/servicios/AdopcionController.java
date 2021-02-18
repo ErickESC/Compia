@@ -76,9 +76,9 @@ public class AdopcionController {
 		
 		log.info("Resibi llama a retrive all");
 		
-		//List <Pokemon> pokemons = pokemonService.rellena();
+		List <Pokemon> pokemons = pokemonService.rellena();
 		
-		List <Pokemon> pokemons = (List<Pokemon>) pokemonService.retriveAll();
+		//List <Pokemon> pokemons = (List<Pokemon>) pokemonService.retriveAll();
 		
 		Adopcion nuevoGrupo = new Adopcion();
 		nuevoGrupo.setClave("ADPN001");

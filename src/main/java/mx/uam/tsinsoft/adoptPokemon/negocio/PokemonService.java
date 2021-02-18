@@ -149,7 +149,7 @@ public class PokemonService {
 		pokemon.getInformation().setDescription("Puede sobrevivir largo tiempo sin probar bocado gracias a los nutrientes que guarda en el bulbo del lomo");
 		pokemon.getInformation().setGender("masculino");
 		pokemon.getInformation().setLevel("5");
-		pokemon.getInformation().setNature("juguetona");
+		pokemon.getInformation().setNature("Hurania");
 		pokemon.getInformation().setObjeto("carameloraro");
 		pokemon.getInformation().setRegion("Kanto");
 		pokemon.getInformation().setFirst("Planta");
@@ -160,7 +160,7 @@ public class PokemonService {
 		Information information1 = new Information();
 		Pokemon pokemon1 = new Pokemon();
 		pokemon1.setPokemonId("GEKA074200312");
-		pokemon1.setStatus("adopción");
+		pokemon1.setStatus("adopcion");
 		pokemon1.setInformation(information1);
 		pokemon1.getInformation().setName("Geodude");
 		pokemon1.getInformation().setPokedex("074");
@@ -168,7 +168,7 @@ public class PokemonService {
 		pokemon1.getInformation().setDescription("Los Geodude habitan en las montañas que escalan a pulso con sus fuertes brazos. Cuando quieren dormir, se entierran a medias en el suelo, y por mucho que lo pisen mientras duerme, no se despertará.");
 		pokemon1.getInformation().setGender("macho");
 		pokemon1.getInformation().setLevel("32");
-		pokemon1.getInformation().setNature("Serio");
+		pokemon1.getInformation().setNature("Seria");
 		pokemon1.getInformation().setObjeto("ninguno");
 		pokemon1.getInformation().setRegion("kanto");
 		pokemon1.getInformation().setFirst("Roca");
@@ -187,7 +187,7 @@ public class PokemonService {
 		pokemon2.getInformation().setDescription("Snorlax come muchísimos kilos de comida al día, lo único que hará será echarse a dormir hasta que vuelva a despertarse por el hambre");
 		pokemon2.getInformation().setGender("macho");
 		pokemon2.getInformation().setLevel("15");
-		pokemon2.getInformation().setNature("Perezoso");
+		pokemon2.getInformation().setNature("Placido");
 		pokemon2.getInformation().setObjeto("ninguno");
 		pokemon2.getInformation().setRegion("kanto");
 		pokemon2.getInformation().setFirst("Normal");
@@ -198,7 +198,7 @@ public class PokemonService {
 		Information information3 = new Information();
 		Pokemon pokemon3 = new Pokemon();
 		pokemon3.setPokemonId("WOJO194200605");
-		pokemon3.setStatus("adopción");
+		pokemon3.setStatus("adopcion");
 		pokemon3.setInformation(information3);
 		pokemon3.getInformation().setName("Wooper");
 		pokemon3.getInformation().setPokedex("194");
@@ -206,7 +206,7 @@ public class PokemonService {
 		pokemon3.getInformation().setDescription("No tiene manos, tiene una cola parecida al de un castor que utiliza para nadar. Las estructuras a lado y lado de su cabeza que parecen flechas son en realidad sus branquias, las cuales usa para poder respirar mientras se encuentra en el agua.");
 		pokemon3.getInformation().setGender("hembra");
 		pokemon3.getInformation().setLevel("21");
-		pokemon3.getInformation().setNature("Cariñosa");
+		pokemon3.getInformation().setNature("Cauta");
 		pokemon3.getInformation().setObjeto("ninguno");
 		pokemon3.getInformation().setRegion("Johto");
 		pokemon3.getInformation().setFirst("Agua");
@@ -225,7 +225,7 @@ public class PokemonService {
 		pokemon4.getInformation().setDescription("Dragonite es un Pokémon dragón, conocido como el Avatar del Mar. Posee un amplio set de movimientos, puede volar, lanzar fuego, agua, hielo y/o electricidad. Tiene una inteligencia cercana a la humana.");
 		pokemon4.getInformation().setGender("Macho");
 		pokemon4.getInformation().setLevel("45");
-		pokemon4.getInformation().setNature("Aleatoria");
+		pokemon4.getInformation().setNature("Gosera");
 		pokemon4.getInformation().setObjeto("ninguno");
 		pokemon4.getInformation().setRegion("Johto");
 		pokemon4.getInformation().setFirst("Dragon");
@@ -274,7 +274,7 @@ public class PokemonService {
 		Information information7 = new Information();
 		Pokemon pokemon7 = new Pokemon();
 		pokemon7.setPokemonId("LIAL725200606");
-		pokemon7.setStatus("adopción");
+		pokemon7.setStatus("adopcion");
 		pokemon7.setInformation(information7);
 		pokemon7.getInformation().setName("Litten");
 		pokemon7.getInformation().setPokedex("725");
@@ -311,7 +311,7 @@ public class PokemonService {
 		Information information9 = new Information();
 		Pokemon pokemon9 = new Pokemon();
 		pokemon9.setPokemonId("PAGA674190208");
-		pokemon9.setStatus("adopción");
+		pokemon9.setStatus("adopcion");
 		pokemon9.setInformation(information9);
 		pokemon9.getInformation().setName("Pancham");
 		pokemon9.getInformation().setPokedex("674");
@@ -329,7 +329,7 @@ public class PokemonService {
 		Information information10 = new Information();
 		Pokemon pokemon10 = new Pokemon();
 		pokemon10.setPokemonId("WOGA202200609");
-		pokemon10.setStatus("adopción");
+		pokemon10.setStatus("adopcion");
 		pokemon10.setInformation(information10);
 		pokemon10.getInformation().setName("Wobbuffet");
 		pokemon10.getInformation().setPokedex("202");
@@ -347,7 +347,7 @@ public class PokemonService {
 		Information information11 = new Information();
 		Pokemon pokemon11 = new Pokemon();
 		pokemon11.setPokemonId("SQKA007200201");
-		pokemon11.setStatus("adopción");
+		pokemon11.setStatus("adopcion");
 		pokemon11.setInformation(information11);
 		pokemon11.getInformation().setName("Squirtle");
 		pokemon11.getInformation().setPokedex("007");
@@ -383,7 +383,7 @@ public class PokemonService {
 	Information information13 = new Information();
 	Pokemon pokemon13 = new Pokemon();
 	pokemon13.setPokemonId("CHSI390200201");
-	pokemon13.setStatus("adopción");
+	pokemon13.setStatus("adopcion");
 	pokemon13.setInformation(information13);
 	pokemon13.getInformation().setName("Chimchar");
 	pokemon13.getInformation().setPokedex("390");
@@ -419,7 +419,7 @@ public class PokemonService {
 	Information information15 = new Information();
 	Pokemon pokemon15 = new Pokemon();
 	pokemon15.setPokemonId("FEKA653200201");
-	pokemon15.setStatus("adopción");
+	pokemon15.setStatus("adopcion");
 	pokemon15.setInformation(information15);
 	pokemon15.getInformation().setName("Fennekin");
 	pokemon15.getInformation().setPokedex("653");
@@ -455,7 +455,7 @@ pokemons.add(pokemon16);
 Information information17 = new Information();
 Pokemon pokemon17 = new Pokemon();
 pokemon17.setPokemonId("SCGA813200201");
-pokemon17.setStatus("adopción");
+pokemon17.setStatus("adopcion");
 pokemon17.setInformation(information17);
 pokemon17.getInformation().setName("Scorbunny");
 pokemon17.getInformation().setPokedex("813");
@@ -491,7 +491,7 @@ pokemons.add(pokemon18);
 Information information19 = new Information();
 Pokemon pokemon19 = new Pokemon();
 pokemon19.setPokemonId("ROAL722200201");
-pokemon19.setStatus("adopción");
+pokemon19.setStatus("adopcion");
 pokemon19.setInformation(information19);
 pokemon19.getInformation().setName("Rowlett");
 pokemon19.getInformation().setPokedex("722");

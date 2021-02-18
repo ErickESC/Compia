@@ -117,7 +117,9 @@ img{
 .boton-rojo{
     background-color:  var(--colorPrincipal);
 }
-
+.boton-azul{
+    background-color:  blue;
+}
 
 /*Header*/
 
