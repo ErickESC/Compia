@@ -1,5 +1,9 @@
 package mx.uam.tsinsoft.adoptPokemon.servicios;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.List;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -177,6 +181,28 @@ public class EntrenadorController {
 			return ResponseEntity.status(HttpStatus.OK).build();
 		}else {
 			return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+		}
+	}
+	
+	/**
+	 * 
+	 * @param claved
+	 * @return status ok y entrenador solicitado, not found en caso contrario
+	 */
+	@ApiOperation(
+			value = "Regresa el documento con codigos postales",
+			notes = "Regresa un json con el documento de los codigos postales"
+			)
+	@GetMapping(path = "/entrenadores/document", produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity <?> retrieve() throws FileNotFoundException, IOException {
+		log.info("Regresando documento");
+		
+		List<String> document = entrenadorService.retriveDoc();
+		
+		if(document != null) {
+			return ResponseEntity.status(HttpStatus.OK).body(document);
+		} else {
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("No se encontro grupo de cuidado");
 		}
 	}
 }

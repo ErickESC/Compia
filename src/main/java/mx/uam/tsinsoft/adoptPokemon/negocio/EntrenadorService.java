@@ -3,6 +3,12 @@
  */
 package mx.uam.tsinsoft.adoptPokemon.negocio;
 
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -153,5 +159,29 @@ public class EntrenadorService {
 		entrenadorRepository.save(trainer);
 		
 		return true;
+	}
+	
+	/**
+	 * 
+	 * @return Documento con codigos postales
+	 */
+	public List<String> retriveDoc() throws FileNotFoundException, IOException{
+		log.info("Llamado a regresar a los codigos postales");
+		
+		List<String> document = new ArrayList<>();
+		
+		String cadena;
+		
+		//Codigo que pasa un txt aun string
+        FileReader f = new FileReader("C:\\Users\\eekos\\git\\adoptPokemons\\src\\main\\resources\\static\\docs\\CiudadDeMexico.txt");
+        BufferedReader b = new BufferedReader(f);
+        
+        while((cadena = b.readLine())!=null) {
+            document.add(cadena);
+        }
+        
+        b.close();
+
+		return document;
 	}
 }
