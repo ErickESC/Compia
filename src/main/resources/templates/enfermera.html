@@ -14,6 +14,7 @@
 
         <!--Fuentes-->
         <link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&family=Lato:wght@400;700&display=swap" rel="stylesheet"> 
+		
 		<!-- Metodos de JS -->
 		<script src="js/metodos.js" type="text/javascript"></script>
 		
@@ -191,8 +192,28 @@
                 </fieldset>
 
                 <a style="color: #ffffff;" id="botonListaAdmin" class="boton boton-rojo" href='javascript:;' onclick="busca();">Buscar</a>
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                <a style="color: #ffffff;" id="botonListaAdmin" class="boton boton-azul" href='javascript:;' onclick="registra();">Registrar</a>
+                
+                <fieldset>
+                    <legend class="centrar-texto aviso">Rellenar estos campos junto con los de arriba para registrar a un pokemon</legend>
+
+                    <label for="imagePokemonE">Imagen del Pokemon:</label>
+                    <input type="text" id="imagePokemonE" onkeyup="guarda('Im')">
+                    
+                    <label for="levelPokemonE">Nivel del Pokemon:</label>
+                    <input type="text" id="levelPokemonE" onkeyup="guarda('lev')">
+                    
+                    <label for="pokedex">Numero en la Pokedex:</label>
+                    <input type="text" id="pokedex" onkeyup="guarda('Pkx')">
+                    
+                    <label for="descripcionPokemonE">Descripcion:</label>
+                    <input type="text" id="descripcionPokemonE" onkeyup="guarda('Desc')">
+                    
+                    <label for="objetoPokemonE">Objeto:</label>
+                    <input type="text" id="objetoPokemonE" onkeyup="guarda('Ob')">
+
+                </fieldset>
+                
+                <a style="color: #ffffff;" id="botonListaAdmin" class="boton boton-azul" href='javascript:;' onclick="registraPokemon();">Registrar</a>
             </form>
 
             <div class="container">
@@ -216,32 +237,39 @@
                     <legend class="centrar-texto aviso">Formulario para actualizar o buscar datos de entrenadores pokemon</legend>
 
                     <label for="idEntrenadorE">ID del entrenador Pokemon:</label>
-                    <input type="text" id="idEntrenadorE"  required>
+                    <input type="text" id="idEntrenadorE" onkeyup="guardaTrainerData('Tid')">
 
                     <label for="nombreEntrenadorE">Nombre del entrenador:</label>
-                    <input type="text" id="nombreEntrenadorE">
+                    <input type="text" id="nombreEntrenadorE" onkeyup="guardaTrainerData('Nom')">
 
                     <label for="emailEntrenadorE">E-mail del entrenador:</label>
-                    <input type="email" id="emailEntrenadorE">
-
-                    <label for="direccionEntrenadorE">Dirección del entrenador:</label>
-                    <input type="text" id="direccionEntrenadorE">
-
-                    <label for="passwordEntrenadorE">Contraseña del entrenador:</label>
-                    <input type="text" id="passwordEntrenadorE">
+                    <input type="email" id="emailEntrenadorE" onkeyup="guardaTrainerData('Mail')">
 
                     <label for="estatusTrabajadorE">Estatus del entrenador (trabajo):</label>
-                    <select id="estatusTrabajadorE">
+                    <select id="estatusTrabajadorE" onchange="guardaTrainerData('Est')">
                         <option value="" disabled selected>--Seleccione el Estatus del entrenador--</option>
-                        <option value="reclutadoEnfermero">Enfermero/a</option>
-                        <option value="reclutadoRescatista">Rescatista</option>
+                        <option value="Enfermero">Enfermero/a</option>
+                        <option value="Rescatista">Rescatista</option>
                         <option value="noReclutado">No reclutado</option>
                     </select>
 
                 </fieldset>
 
-                <input id="buscarEndermeraEntrenador" type="submit" value="Buscar" class="boton boton-rojo">
+                <a style="color: #ffffff;" id="botonListaAdmin" class="boton boton-rojo" href='javascript:;' onclick="buscaTrainers();">Buscar</a>
             </form>
+            
+            <div class="container">
+              <h3 class="centrar-texto pt-5">Lista de Entrenadores</h3>
+
+              <div class="listaPokemonEnfermera mt-5" id="entrenadores">
+                  
+                  
+                  <!-- Lista de entrenadores -->
+                  
+                  
+                            
+              </div>
+            </div>
 
         </main>
 
