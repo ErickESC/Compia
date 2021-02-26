@@ -17,14 +17,11 @@ import lombok.NoArgsConstructor;
 @Entity
 public class Trabajador {
 	
-	@ApiModelProperty(notes = "clave del entrenador", required = true)
+	@ApiModelProperty(notes = "id de la ficha de trabajador del entrenador", required = true)
 	@Id
 	@GeneratedValue
 	private Integer id;
 	
-	@ApiModelProperty(notes = "clave del entrenador", required = true)
-	private String clave;
-	
-	@ApiModelProperty(notes = "Nombre dela especialidad", required = true)
+	@ApiModelProperty(notes = "Nombre de la especialidad", required = true)
 	private String rank;
 }
