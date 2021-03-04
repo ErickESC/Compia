@@ -49,7 +49,7 @@ public class EntrenadorController {
 	@PostMapping(path = "/entrenadores", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity <?> create(@RequestBody @Valid Entrenador entrenadorGrupo) {
 		
-		log.info("Recibí llamada a create con "+ entrenadorGrupo);
+		log.info("Recibi� llamada a create con "+ entrenadorGrupo);
 		
 		Entrenador grupo = entrenadorService.create(entrenadorGrupo);
 		
@@ -88,12 +88,12 @@ public class EntrenadorController {
 			)
 	@GetMapping(path = "/entrenadores/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity <?> retrieve(@PathVariable("id") @Valid Integer id) {
-		log.info("Buscando al grupo con clave "+id);
+		log.info("Buscando al entrenador con id "+id);
 		
-		Entrenador especialidad = entrenadorService.retrive(id);
+		Entrenador entrenador = entrenadorService.retrive(id);
 		
-		if(especialidad != null) {
-			return ResponseEntity.status(HttpStatus.OK).body(especialidad);
+		if(entrenador != null) {
+			return ResponseEntity.status(HttpStatus.OK).body(entrenador);
 		} else {
 			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("No se encontro grupo de cuidado");
 		}
@@ -111,7 +111,7 @@ public class EntrenadorController {
 	@PutMapping(path = "/entrenadores/{id}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity <?> update(@RequestBody @Valid Entrenador entrenadorActualizado) {
 		
-		log.info("Recibí llamada a update con "+ entrenadorActualizado);
+		log.info("Recibi� llamada a update con "+ entrenadorActualizado);
 		
 		Entrenador entrenador;
 		
@@ -143,7 +143,7 @@ public class EntrenadorController {
 	@DeleteMapping(path = "/entrenadores/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity <?> delete(@PathVariable("id") @Valid Integer id) {
 		
-		log.info("Recibí llamada a delete con "+ id);
+		log.info("Recibi� llamada a delete con "+ id);
 		
 		//Revisa que exista en el repositorio de alumnos
 		if(entrenadorService.delete(id)) {
@@ -173,7 +173,7 @@ public class EntrenadorController {
 	@PostMapping(path = "/entrenadores/add/{trainerId}/pokemons/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity <?> addPokemonToTrainer(@PathVariable("trainerId") Integer id, @PathVariable("id") String pokemonID) {
 		
-		log.info("Recibí llamada a addPokemon con grupo"+ id +" y matricula: "+pokemonID);
+		log.info("Recibi llamada a addPokemon con matricula: "+ id +" y matricula: "+pokemonID);
 		
 		boolean result = entrenadorService.addPokemonToTrainer(id, pokemonID);
 		

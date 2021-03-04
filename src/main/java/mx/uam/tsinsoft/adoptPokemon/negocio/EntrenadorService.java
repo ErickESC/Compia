@@ -32,6 +32,9 @@ public class EntrenadorService {
 	private EntrenadorRepository entrenadorRepository;
 	
 	@Autowired
+	private AdopcionService adopcionService;
+	
+	@Autowired
 	private PokemonService pokemonService;
 	
 	@Autowired
@@ -81,23 +84,18 @@ public class EntrenadorService {
 	 */
 	public Entrenador update(Entrenador entrenadorActualizado){ 
 		
-		log.info("Actualizando al pokemon con matricula "+entrenadorActualizado.getId());
+		log.info("Actualizando al Entrenador con matricula "+entrenadorActualizado.getId());
 		
 		Optional<Entrenador> entrenadorOpt = entrenadorRepository.findById(entrenadorActualizado.getId());
 		
 		if(entrenadorOpt.isPresent()) {
 			
-			if((entrenadorActualizado.getSoyTrabajador() == null) && (entrenadorOpt.get().getSoyTrabajador() != null)) {
-				entrenadorActualizado.setSoyTrabajador(entrenadorOpt.get().getSoyTrabajador());
-			}
-			if((entrenadorActualizado.getPokemons().isEmpty()) && (!entrenadorOpt.get().getPokemons().isEmpty())) {
-				entrenadorActualizado.setPokemons(entrenadorOpt.get().getPokemons());
-			}
+			entrenadorOpt.get().getSoyTrabajador().setRank(entrenadorActualizado.getSoyTrabajador().getRank());
 			
-			return entrenadorRepository.save(entrenadorActualizado);
+			return entrenadorRepository.save(entrenadorOpt.get());
 			
 		}else {
-			log.info("El alumno no existe");
+			log.info("El Entrenador no existe");
 			return null;
 		}
 	}
@@ -109,7 +107,7 @@ public class EntrenadorService {
 	 */
 	public boolean delete(Integer Id){
 		
-		log.info("Borrando pokemon con matricula "+Id);
+		log.info("Borrando Entrenador con matricula "+Id);
 		try {
 			entrenadorRepository.deleteById(Id);
 			return true;
@@ -140,17 +138,27 @@ public class EntrenadorService {
 		
 		Pokemon pokemon = pokemonService.retrive(pokemonId);
 		
-		Optional <Entrenador> grupoOpt = entrenadorRepository.findById(trainerId);
+		log.info("Agregando pokemon con Id: "+pokemonId+" a entrenador con id: "+trainerId);
 		
-		if(!grupoOpt.isPresent() || pokemon == null) {
+		//Se cambia el estatus del pokemon
+		pokemon.setStatus("Adoptado");
+		
+		
+		
+		Optional <Entrenador> refactorOpt = entrenadorRepository.findById(trainerId);
+		
+		if(!refactorOpt.isPresent() || pokemon == null) {
 			
 			return false;
 		}
 
-		Entrenador trainer = grupoOpt.get();
+		Entrenador trainer = refactorOpt.get();
 		trainer.addPokemon(pokemon);
 		
 		pokemon.setEntrenador(trainer);
+		
+		//Retiramos al pokemon de la lista de adopcion
+		adopcionService.quitPokemonFromAdoption(1, pokemonId);
 		
 		log.info("Entrenador contiene a pokemon: "+trainer.getPokemons().contains(pokemon));
 		log.info("El entrenador del pokemon es: "+pokemon.getEntrenador().getId());
@@ -170,7 +178,7 @@ public class EntrenadorService {
 		
 		List<String> document = new ArrayList<>();
 		
-		String cadena;
+		String cadena = new String();
 		
 		//Codigo que pasa un txt aun string
         FileReader f = new FileReader("C:\\Users\\eekos\\git\\adoptPokemons\\src\\main\\resources\\static\\docs\\CiudadDeMexico.txt");
@@ -178,6 +186,7 @@ public class EntrenadorService {
         
         while((cadena = b.readLine())!=null) {
             document.add(cadena);
+            log.info(""+cadena);
         }
         
         b.close();

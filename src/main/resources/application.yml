@@ -20,3 +20,23 @@ spring:
       enabled: true
 server:
   port: 8080
+  
+---
+
+spring:
+  profiles: development
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: "eekoston@gmail.com" #email para enviar
+    password: "ssdeyqycnmrlshpu" #contraseña de aplicación
+    properties: 
+      mail: 
+        smtp: 
+          starttls: 
+            enable: true
+            required: true
+          auth:  true
+          connectiontimeout: 5000
+          timeout: 5000
+          writetimeout:  5000

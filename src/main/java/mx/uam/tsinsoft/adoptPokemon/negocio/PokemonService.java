@@ -41,7 +41,7 @@ public class PokemonService {
 			log.info("Creado el pokemon con matricula "+nuevoPokemon.getPokemonId());
 			return pokemonRepository.save(nuevoPokemon);
 		}else {
-			log.info("El alumno ya existe");
+			log.info("El pokemon ya existe");
 			return null;
 		}
 	}
@@ -63,10 +63,10 @@ public class PokemonService {
 	public Pokemon retrive(String Id){
 		log.info("Llamado a regresar al a pokemon con matricula "+Id);
 		
-		Optional <Pokemon> alumnoOpt = pokemonRepository.findById(Id);
+		Optional <Pokemon> pokemonOpt = pokemonRepository.findById(Id);
 		
-		if(alumnoOpt.isPresent()) {
-			return alumnoOpt.get();
+		if(pokemonOpt.isPresent()) {
+			return pokemonOpt.get();
 		}else {
 			return null;
 		}

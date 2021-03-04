@@ -1,4 +1,3 @@
-
     //Variables globales
     
     var URL = "http://localhost:8080/entrenadores";
@@ -54,7 +53,7 @@
 	
     $(document).ready(function(){
     	
-    	$.ajaxSetup({contentType: "application/json; charset=utf-8"});
+    	$.ajaxSetup({contentType: "application/json; charset=utf-16"});
 	    
 	    var URL2 = URL + "/document";
 	    

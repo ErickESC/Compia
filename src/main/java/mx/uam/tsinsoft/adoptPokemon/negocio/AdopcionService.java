@@ -137,6 +137,8 @@ public class AdopcionService {
 	 */
 	public boolean quitPokemonFromAdoption(Integer groupId, String pokemonId) {
 		
+		log.info("retirando de grupo: "+groupId+" al pokemon: "+pokemonId);
+		
 		// 1.- Recuperamos primero al pokemon
 		Pokemon pokemon = pokemonService.retrive(pokemonId);
 		
@@ -145,19 +147,19 @@ public class AdopcionService {
 		
 		// 3.- Verificamos que el pokemon y grupo existan
 		if(!grupoOpt.isPresent() || pokemon == null) {
-			
+			log.info("retirando falso");
 			return false;
 		}
 		// 4.- retiro al pokemon de la especialidad
 		Adopcion grupo = grupoOpt.get();
 		grupo.quitPokemon(pokemon);
-		
-		pokemon.setStatus("undefined");
+
 		
 		// 5.- Persistir el cambio
 		adopcionRepository.save(grupo);
 		pokemonService.update(pokemon);
 		
+		log.info("retirando Verdadero");
 		return true;
 	}
 }

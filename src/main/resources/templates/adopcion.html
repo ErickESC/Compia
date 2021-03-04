@@ -29,16 +29,26 @@
     	</script>
 			
     	<script>
+    	
+    	//Variables globales necesarias para el manejo de los pokemones
+    	var lista;
+    	
     	$(document).ready(function(){
+    	
+    			cargaPokemons();
+    	
+    	});
+    	
+		function cargaPokemons(){
        		
     		$.ajaxSetup({contentType: "application/json; charset=utf-8"});
-
-       		var lista;
        		
        		var URL = "http://localhost:8080/adopciones";
        		
        		console.log("Ready");
 	       	
+       		$('#contenido').empty();
+       		
        		$.get(URL,cargaGrupo);
        		
 	       	function cargaGrupo(Grupos){
@@ -46,7 +56,7 @@
 		          		// Recorre los objetos
 		          		var i;
 		                
-		          		var lista = Grupos[0].pokemons;
+		          		lista = Grupos[0].pokemons;
 		          		
 		          		for (i=0;i<lista.length;i++) {
 		    	     		var element = lista[i].information;
@@ -71,14 +81,114 @@
 			                +"</ul>"
 		             		
 			                +"<div class=\"card-body\">"
-			                  +"<a href=\"#\" class=\"card-link\">Adoptar</a>"
-			                  +"<a href=\"#\" class=\"card-link\">Ver más</a>"
+			                  +"<a style=\"color: #ffffff;\" id=\"botonListaAdmin\" class=\"boton boton-rojo\" href='javascript:;' onclick=\"adopcion('"+pokemon.pokemonId+"');\">Adoptar</a>"
 			                +"</div>" 
 			                
 		             	   +"</div>")); 
 		          		} 
 		     }
-    	});
+    	}
+		
+		//Variables necesarias para la adopcin del pokemon
+		var pokemonId = "";
+		var trainerId = "";
+		var imagen = "";
+		var nombre = "";
+		
+		function guardaId(){
+			trainerId = document.getElementById("trainerId").value;
+	        console.log(this.trainerId);
+		}
+		
+		function adopcion(pokemonId){
+			
+			this.pokemonId = pokemonId;
+			console.log(this.pokemonId);
+			
+			$('#contenido').empty();
+		          		
+			for (i=0;i<lista.length;i++) {
+				
+				var element = lista[i].information;
+        		var pokemon = lista[i];
+				
+				if(pokemonId == pokemon.pokemonId){
+					
+	             	  console.log(element);
+	             		
+	             	  imagen = element.image;
+	             	  nombre = element.name;
+	             	  
+	             	  //Se asigna el indice al id del elemento
+	          	 		
+	             	  $("#contenido").append($("<div class=\"card estilo-carta\" id=\""+i+"\">"));
+	             		$("#"+i).append($("<img src=\""+element.image+"\" class=\"card-img-top\" alt=\"...\">"
+	         			
+	          	 		+"<div class=\"card-body\">"
+	             			+"<h5 class=\"card-title\">Nombre: "+element.name+"</h5>"
+	             			+"<p class=\"card-text\">Descripción: "+element.description+"</p>"
+	             		+"</div>"
+	             		
+		                +"<ul class=\"list-group list-group-flush\">"
+		                  +"<li class=\"list-group-item\">Tipo: principal-"+element.first+", secundario-"+element.second+"</li>"
+		                  +"<li class=\"list-group-item\">Sexo: "+element.gender+"</li>"
+		                  +"<li class=\"list-group-item\">Estatus: "+pokemon.status+"</li>"
+		                +"</ul>"
+		                
+	             	   +"</div>"));
+	               $("#contenido").append($("<div>"
+	               		+"<fieldset>"
+	               			+"<legend class=\"centrar-texto\">Para Formalizar la adopcion ingresa tu id de Entrenador</legend>"
+
+	               			+"<label for=\"trainerId\">Id de Entrenador:</label>"
+	               		+"<input type=\"text\" id=\"trainerId\" placeholder=\"Tu ID de entrenador\" onkeyup=\"guardaId()\" required>"
+	    	                
+	               		+"</fieldset>"
+
+	               		+"<p class=\"mt-3 aviso\">Al dar clic en el botón Adoptar aceptas los términos y condiciones de AdoptPokemon y te comprometes a hacerte responsable del pokemon elegido y recibiras un correo con el procedimieto siguiente.</p>"
+
+	               		+"<a style=\"color: #ffffff;\" id=\"botonListaAdmin\" class=\"boton boton-rojo\" href='javascript:;' onclick=\"adopta();\">Adoptar</a>"
+	                	+"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"
+	               		+"<a style=\"color: #ffffff;\" id=\"botonListaAdmin\" class=\"boton boton-azul\" href='javascript:;' onclick=\"cargaPokemons();\">Cancelar</a>"
+	               		
+	               	+"</div>"));
+				}
+		    	     		
+		    }
+    	}
+		
+		function imprimeAgradecimiento(){
+			$('#contenido').empty();
+       	  
+			$("#contenido").append($("<div class=\"card estilo-carta\" id=\"greetings\">"));
+   				$('#greetings').append($("<img src=\""+imagen+"\" class=\"card-img-top\" alt=\"...\">"
+			
+	 			+"<div class=\"card-body\">"
+   					+"<h5 class=\"card-title\"><Muchas gracias por adoptar a: "+nombre+" Cuidalo muy bien, confiamos en ti</h5>"
+   				+"</div>"
+   				
+                +"<div class=\"card-body\">"
+                	+"<a style=\"color: #ffffff;\" id=\"botonListaAdmin\" class=\"boton boton-rojo\" href='javascript:;' onclick=\"cargaPokemons();\">Volver</a>"
+              	+"</div>" 
+          
+   	   		+"</div>"));
+		}
+		
+		function adopta(){
+       		
+    		$.ajaxSetup({contentType: "application/json; charset=utf-8"});
+       		
+       		var URL = "http://localhost:8080/entrenadores/add/"+this.trainerId+"/pokemons/"+this.pokemonId;
+       		
+       		console.log("Ready");
+	       	
+   			$.ajax({url: URL, 
+ 		    	method: 'POST',
+ 		    	success: imprimeAgradecimiento()
+ 		    	});
+       		
+    	}
+		
     	</script>
     	
 
